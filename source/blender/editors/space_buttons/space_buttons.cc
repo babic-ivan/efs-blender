@@ -215,13 +215,10 @@ Vector<eSpaceButtons_Context> ED_buttons_tabs_list(const SpaceProperties *sbuts,
     }
   };
 
-  add_tab(BCONTEXT_TOOL);
-
-  add_spacer();
-
+  /* EasyFormStudio: only the tabs a furniture designer needs are shown
+   * (rendering stays fully supported). */
   add_tab(BCONTEXT_RENDER);
   add_tab(BCONTEXT_OUTPUT);
-  add_tab(BCONTEXT_VIEW_LAYER);
   add_tab(BCONTEXT_SCENE);
   add_tab(BCONTEXT_WORLD);
 
@@ -232,24 +229,8 @@ Vector<eSpaceButtons_Context> ED_buttons_tabs_list(const SpaceProperties *sbuts,
   add_spacer();
 
   add_tab(BCONTEXT_OBJECT);
-  add_tab(BCONTEXT_MODIFIER);
-  add_tab(BCONTEXT_SHADERFX);
-  add_tab(BCONTEXT_PARTICLE);
-  add_tab(BCONTEXT_PHYSICS);
-  add_tab(BCONTEXT_CONSTRAINT);
   add_tab(BCONTEXT_DATA);
-  add_tab(BCONTEXT_BONE);
-  add_tab(BCONTEXT_BONE_CONSTRAINT);
   add_tab(BCONTEXT_MATERIAL);
-
-  add_spacer();
-
-  add_tab(BCONTEXT_TEXTURE);
-
-  add_spacer();
-
-  add_tab(BCONTEXT_STRIP);
-  add_tab(BCONTEXT_STRIP_MODIFIER);
 
   return tabs;
 }

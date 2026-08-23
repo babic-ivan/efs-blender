@@ -350,7 +350,8 @@ bUserExtensionRepo *BKE_preferences_extension_repo_add_default_system(UserDef *u
 void BKE_preferences_extension_repo_add_defaults_all(UserDef *userdef)
 {
   BLI_assert(userdef->extension_repos.is_empty());
-  BKE_preferences_extension_repo_add_default_remote(userdef);
+  /* EasyFormStudio ships its extensions in the system repository;
+   * the blender.org remote repository is not offered. */
   BKE_preferences_extension_repo_add_default_user(userdef);
   BKE_preferences_extension_repo_add_default_system(userdef);
 }

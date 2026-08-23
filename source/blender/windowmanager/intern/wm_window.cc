@@ -690,7 +690,7 @@ static std::string wm_window_title_text(
     }
   }
 
-  win_title.append(fmt::format(" - EasyFormStudio {}", BKE_blender_version_string()));
+  win_title.append(" - EasyFormStudio " EASYFORMSTUDIO_VERSION_STRING);
 
   return win_title;
 }

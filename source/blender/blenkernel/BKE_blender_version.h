@@ -43,6 +43,12 @@ namespace blender {
 #define BLENDER_FILE_MIN_SUBVERSION 85
 
 /** User readable version string. */
+/**
+ * EasyFormStudio product version, shown in the window title, splash and
+ * About dialog. Keep in sync with `WM_MT_splash_about` in `wm.py`.
+ */
+#define EASYFORMSTUDIO_VERSION_STRING "1.0"
+
 const char *BKE_blender_version_string();
 
 /** As above but does not show patch version. */

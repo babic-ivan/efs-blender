@@ -1526,6 +1526,10 @@ UserDef *BKE_blendfile_userdef_from_defaults()
   /* EasyFormStudio starts in its bundled application template. */
   STRNCPY_UTF8(userdef->app_template, "EasyFormStudio");
 
+  /* Croatian interface by default (ID from `locale/languages`);
+   * the EFS add-on ships complete Croatian translations. */
+  userdef->language = eUserpref_Language(16);
+
   /* Add-ons. */
   {
     const char *addons[] = {

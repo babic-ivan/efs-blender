@@ -48,6 +48,44 @@ def _enable_extensions():
             pass
 
 
+# Sidebar (N-panel) tabs hidden in the 3D viewport - only EFS tabs remain.
+SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View"}
+
+
+def _hide_sidebar_tabs():
+    for cls in list(bpy.types.Panel.__subclasses__()):
+        if (getattr(cls, "bl_space_type", None) == 'VIEW_3D'
+                and getattr(cls, "bl_region_type", None) == 'UI'
+                and getattr(cls, "bl_category", None) in SIDEBAR_HIDE_CATEGORIES
+                and getattr(cls, "is_registered", False)):
+            try:
+                bpy.utils.unregister_class(cls)
+            except Exception:
+                pass
+
+
+_view3d_menus_draw_orig = None
+
+
+def _view3d_menus_draw(self, context):
+    # Object mode: no Add menu - cabinets and boards are created through EFS.
+    if context.mode == 'OBJECT':
+        layout = self.layout
+        layout.menu("VIEW3D_MT_view")
+        layout.menu("VIEW3D_MT_select_object")
+        layout.menu("VIEW3D_MT_object")
+    else:
+        _view3d_menus_draw_orig(self, context)
+
+
+def _simplify_view3d_menus():
+    global _view3d_menus_draw_orig
+    menu = bpy.types.VIEW3D_MT_editor_menus
+    if _view3d_menus_draw_orig is None:
+        _view3d_menus_draw_orig = menu.draw
+        menu.draw = _view3d_menus_draw
+
+
 @persistent
 def load_factory_startup_handler(_filepath):
     for scene in bpy.data.scenes:
@@ -58,6 +96,13 @@ def load_factory_startup_handler(_filepath):
 
 def register():
     bpy.app.handlers.load_factory_startup_post.append(load_factory_startup_handler)
+    bpy.app.timers.register(_kiosk_ui, first_interval=0.1)
+
+
+def _kiosk_ui():
+    _hide_sidebar_tabs()
+    _simplify_view3d_menus()
+    return None
 
 
 def unregister():
