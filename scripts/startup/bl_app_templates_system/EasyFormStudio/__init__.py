@@ -54,12 +54,13 @@ SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View", "Animation", "Display"}
 
 
 def _hide_panel(cls):
-    # Hide via poll instead of unregistering: the owning add-on can still
-    # unregister its classes cleanly on exit or reload.
-    if getattr(cls, "_efs_hidden", False):
-        return
-    cls.poll = classmethod(lambda _cls, _context: False)
-    cls._efs_hidden = True
+    # Unregister: a post-registration poll swap is ignored by the C side for
+    # panels, so this is the only reliable way to hide the category tabs.
+    # (The owning add-on's unregister then warns on exit - console only.)
+    try:
+        bpy.utils.unregister_class(cls)
+    except Exception:
+        pass
 
 
 def _hide_sidebar_tabs():
