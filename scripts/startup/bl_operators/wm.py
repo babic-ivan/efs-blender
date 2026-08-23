@@ -3479,9 +3479,6 @@ class WM_MT_splash(Menu):
 
         col2 = split.column()
 
-        col2.operator("wm.url_open_preset", text="What's New", icon='URL').type = 'RELEASE_NOTES'
-        col2.operator("wm.url_open_preset", text="Donate to EasyFormStudio", icon='FUND').type = 'FUND'
-
         layout.separator()
 
         if (not bpy.app.online_access) and bpy.app.online_access_override:
