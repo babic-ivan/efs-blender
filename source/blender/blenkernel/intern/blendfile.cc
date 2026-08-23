@@ -1523,6 +1523,9 @@ UserDef *BKE_blendfile_userdef_from_defaults()
   userdef->versionfile = BLENDER_FILE_VERSION;
   userdef->subversionfile = BLENDER_FILE_SUBVERSION;
 
+  /* EasyFormStudio starts in its bundled application template. */
+  STRNCPY_UTF8(userdef->app_template, "EasyFormStudio");
+
   /* Add-ons. */
   {
     const char *addons[] = {
@@ -1534,6 +1537,8 @@ UserDef *BKE_blendfile_userdef_from_defaults()
         "cycles",
         "pose_library",
         "bl_pkg",
+        "bl_ext.system.efs",
+        "bl_ext.system.measureit",
     };
     for (int i = 0; i < ARRAY_SIZE(addons); i++) {
       bAddon *addon = BKE_addon_new();

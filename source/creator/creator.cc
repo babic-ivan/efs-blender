@@ -510,6 +510,10 @@ int main(int argc,
   /* Ensure we free on early exit. */
   app_init_data.ba = ba;
 
+  /* EasyFormStudio starts in its application template by default;
+   * `--app-template` on the command line still overrides this. */
+  WM_init_state_app_template_set("EasyFormStudio");
+
   main_args_setup(C, ba, false);
 
   /* Parse environment handling arguments. */

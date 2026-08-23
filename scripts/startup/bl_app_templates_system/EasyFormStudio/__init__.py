@@ -7,11 +7,14 @@
 import bpy
 from bpy.app.handlers import persistent
 
-# Extensions activated automatically when present (module names in the
-# extensions "user_default" repository).
+# Extensions activated automatically when present. The application bundles
+# efs and measureit in the "system" repository; the other entries cover a
+# development setup where they are installed as user extensions instead.
 EXTENSIONS_AUTO_ENABLE = (
+    "bl_ext.system.efs",
+    "bl_ext.system.measureit",
     "bl_ext.user_default.efs",
-    "bl_ext.user_default.measureit",
+    "bl_ext.blender_org.measureit",
 )
 
 
