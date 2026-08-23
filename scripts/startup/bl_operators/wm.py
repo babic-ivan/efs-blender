@@ -3522,9 +3522,6 @@ class WM_MT_splash_about(Menu):
             col.label(text=iface_("Windowing Environment: {:s}").format(_ghost_backend()), translate=False)
         del _ghost_backend, ghost_backend
 
-        col.separator(factor=2.0)
-        col.label(text="EasyFormStudio is free software, based on EasyFormStudio")
-        col.label(text="Licensed under the GNU General Public License")
 
         col = split.column(align=True)
         col.emboss = 'PULLDOWN_MENU'
