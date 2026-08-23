@@ -4,7 +4,10 @@
 
 !define PRODUCT "EasyFormStudio"
 !define VERSION "2026"
-!define SRC_DIR "$%USERPROFILE%\build_windows\bin\Release"
+; Moze se pregaziti s komandne linije: makensis /DSRC_DIR=C:\...\bin\Release efs_installer.nsi
+!ifndef SRC_DIR
+  !define SRC_DIR "$%USERPROFILE%\build_windows\bin\Release"
+!endif
 
 Unicode true
 Name "${PRODUCT} ${VERSION}"
