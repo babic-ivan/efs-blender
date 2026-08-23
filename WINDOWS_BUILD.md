@@ -22,9 +22,16 @@ make update
 make
 ```
 
-Rezultat: `%USERPROFILE%\build_windows\bin\Release\` s `EasyFormStudio.exe`
-(ime binarke dolazi iz brandinga; ako ostane `blender.exe`, preimenovanje
-rješava installer).
+Rezultat: `%USERPROFILE%\build_windows\bin\Release\` s `blender.exe` i
+`blender-launcher.exe`. **To je očekivano** — CMake target se i dalje zove
+blender. Installer preimenuje `blender-launcher.exe` (GUI wrapper, bez
+konzolnog prozora) u `EasyFormStudio.exe`; `blender.exe` MORA zadržati svoje
+ime jer ga launcher pokreće hardkodirano. Za ručno testiranje bez installera
+pokreći `blender-launcher.exe`.
+
+Napomena za ikone: `release\windows\icons\*.ico` se kompajlira u binarke pri
+buildu — nakon povlačenja novog snapshota s izmijenjenim ikonama treba
+ponovni `make` (relink je dovoljan, inkrementalni build to odradi).
 
 ## Bundlanje EFS + MeasureIt + Bool Tool
 
@@ -43,6 +50,10 @@ Skripta sama nađe verzijski folder (`5.2`) i složi
 `5.2\extensions\system\{efs,measureit,bool_tool}`; `apk` se nikad ne kopira.
 
 ## Installer (NSIS)
+
+Bundlanje ekstenzija (korak iznad) MORA proći prije kompajliranja
+installera — `efs_installer.nsi` odbija kompajlirati ako
+`5.2\extensions\system\{efs,bool_tool}` ne postoje u build folderu.
 
 1. Instaliraj **NSIS** (nsis.sourceforge.io).
 2. Desni klik na `release\windows\efs_installer.nsi` → *Compile NSIS Script*

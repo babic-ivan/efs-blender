@@ -13,6 +13,15 @@ InstallDir "$PROGRAMFILES64\${PRODUCT}"
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 
+; Ekstenzije moraju biti bundlane prije kompajliranja installera
+; (python build_files\utils\make_bundle_extensions.py).
+!if ! /FileExists "${SRC_DIR}\5.2\extensions\system\efs\blender_manifest.toml"
+  !error "EFS ekstenzija nije bundlana u ${SRC_DIR} - pokreni make_bundle_extensions.py prije makensis"
+!endif
+!if ! /FileExists "${SRC_DIR}\5.2\extensions\system\bool_tool\blender_manifest.toml"
+  !error "Bool Tool ekstenzija nije bundlana u ${SRC_DIR} - pokreni make_bundle_extensions.py prije makensis"
+!endif
+
 !include "MUI2.nsh"
 !define MUI_ICON "..\..\release\windows\icons\winblender.ico"
 !define MUI_UNICON "..\..\release\windows\icons\winblender.ico"
@@ -31,9 +40,10 @@ Section "EasyFormStudio"
   SetOutPath "$INSTDIR"
   File /r "${SRC_DIR}\*.*"
 
-  ; blender.exe -> EasyFormStudio.exe ako branding nije preimenovao binarku
+  ; Precaci ciljaju GUI launcher (bez konzolnog prozora). blender.exe MORA
+  ; ostati pod tim imenom - launcher ga pokrece hardkodirano.
   IfFileExists "$INSTDIR\EasyFormStudio.exe" +2 0
-    Rename "$INSTDIR\blender.exe" "$INSTDIR\EasyFormStudio.exe"
+    Rename "$INSTDIR\blender-launcher.exe" "$INSTDIR\EasyFormStudio.exe"
 
   CreateDirectory "$SMPROGRAMS\${PRODUCT}"
   CreateShortcut "$SMPROGRAMS\${PRODUCT}\${PRODUCT}.lnk" "$INSTDIR\EasyFormStudio.exe"
