@@ -216,9 +216,11 @@ Vector<eSpaceButtons_Context> ED_buttons_tabs_list(const SpaceProperties *sbuts,
   };
 
   /* EasyFormStudio: only the tabs a furniture designer needs are shown
-   * (rendering stays fully supported). */
+   * (rendering stays fully supported). The View Layer tab hosts the EFS
+   * "Scene elements" / "Cabinet elements" panels and opens by default. */
   add_tab(BCONTEXT_RENDER);
   add_tab(BCONTEXT_OUTPUT);
+  add_tab(BCONTEXT_VIEW_LAYER);
   add_tab(BCONTEXT_SCENE);
   add_tab(BCONTEXT_WORLD);
 

@@ -49,7 +49,8 @@ def _enable_extensions():
 
 
 # Sidebar (N-panel) tabs hidden in the 3D viewport - only EFS tabs remain.
-SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View"}
+# "Display" is MeasureIt's tab (EFS drives MeasureIt programmatically).
+SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View", "Animation", "Display"}
 
 
 def _hide_sidebar_tabs():
@@ -57,6 +58,21 @@ def _hide_sidebar_tabs():
         if (getattr(cls, "bl_space_type", None) == 'VIEW_3D'
                 and getattr(cls, "bl_region_type", None) == 'UI'
                 and getattr(cls, "bl_category", None) in SIDEBAR_HIDE_CATEGORIES
+                and getattr(cls, "is_registered", False)):
+            try:
+                bpy.utils.unregister_class(cls)
+            except Exception:
+                pass
+
+
+def _hide_view_layer_core_panels():
+    # The View Layer properties tab hosts the EFS "Scene elements" and
+    # "Cabinet elements" panels; hide the built-in panels (EEVEE/Cycles
+    # passes, Freestyle, filter, overrides) so the EFS panels sit on top.
+    for cls in list(bpy.types.Panel.__subclasses__()):
+        if (getattr(cls, "bl_context", None) == "view_layer"
+                and getattr(cls, "bl_space_type", None) == 'PROPERTIES'
+                and not getattr(cls, "__module__", "").startswith("bl_ext.")
                 and getattr(cls, "is_registered", False)):
             try:
                 bpy.utils.unregister_class(cls)
@@ -101,6 +117,7 @@ def register():
 
 def _kiosk_ui():
     _hide_sidebar_tabs()
+    _hide_view_layer_core_panels()
     _simplify_view3d_menus()
     return None
 
