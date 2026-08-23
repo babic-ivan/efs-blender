@@ -47,7 +47,7 @@ namespace blender {
  * EasyFormStudio product version, shown in the window title, splash and
  * About dialog. Keep in sync with `WM_MT_splash_about` in `wm.py`.
  */
-#define EASYFORMSTUDIO_VERSION_STRING "1.0"
+#define EASYFORMSTUDIO_VERSION_STRING "2026"
 
 const char *BKE_blender_version_string();
 
