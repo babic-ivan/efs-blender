@@ -40,12 +40,13 @@ DEFAULT_MEASUREIT_SRC = os.path.join(
 # bundled dependency wheels (pandas, pillow, requests, reportlab, ...).
 EFS_FOLDERS = [
     "element_templates", "icon", "pictures", "web_export", "assets", "hardware",
+    "fonts",
     "wheels",
 ]
 EFS_FILES = [
     "__init__.py", "efs_cabinet_helper_functions.py", "efs_cabinet_props.py",
     "efs_cabinet_ui.py", "efs_cabinet.py", "efs_constants.py", "efs_exporter.py",
-    "efs_labels.py", "efs_utils.py", "efs_parts.py", "efs_dxf.py",
+    "efs_labels.py", "efs_fonts.py", "efs_utils.py", "efs_parts.py", "efs_dxf.py",
     "efs_pdf_drawing.py", "efs_nesting.py", "efs_hardware.py", "efs_mpr.py",
     "efs_quote.py", "efs_label_print.py", "img_loader.py", "preferences.py",
     "efs.blend", "efs_pro", "prices.xlsx", "blender_manifest.toml",
