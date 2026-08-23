@@ -34,6 +34,9 @@ sign() {
         --entitlements "$ENTITLEMENTS" --sign "$IDENTITY" "$1"
 }
 
+echo "== 0/5 Potpis binarija unutar wheelova =="
+python3 "$(dirname "$0")/sign_wheel_binaries.py" "$APP" "$IDENTITY"
+
 echo "== 1/5 Potpis ugnijezdenih binarija =="
 # dylib/so unutar Resources (python moduli, wheelovi itd.)
 find "$APP/Contents/Resources" -type f \( -name "*.dylib" -o -name "*.so" \) -print0 |
