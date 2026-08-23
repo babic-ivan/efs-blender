@@ -19,10 +19,11 @@ EXTENSIONS_AUTO_ENABLE = (
 
 
 def _scene_defaults(scene):
-    # Furniture/carpentry defaults: millimeters.
+    # Furniture/carpentry defaults: display lengths in millimeters.
+    # Unit scale stays 1.0 (1 unit = 1 m) - EFS models geometry in meters.
     unit = scene.unit_settings
     unit.system = 'METRIC'
-    unit.scale_length = 0.001
+    unit.scale_length = 1.0
     unit.length_unit = 'MILLIMETERS'
 
 
@@ -32,9 +33,6 @@ def _viewport_defaults():
             if area.type != 'VIEW_3D':
                 continue
             space = area.spaces.active
-            # Rooms measured in millimeters need a large clip range.
-            space.clip_start = 1.0
-            space.clip_end = 100000.0
             # Keep the sidebar (EFS panel) open by default.
             space.show_region_ui = True
 
