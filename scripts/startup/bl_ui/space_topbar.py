@@ -603,6 +603,7 @@ class TOPBAR_MT_help(Menu):
         show_developer = context.preferences.view.show_developer_ui
 
         layout.operator("wm.url_open", text="Website", icon='URL').url = "https://easyformstudio.com/"
+        layout.operator("wm.url_open", text="YouTube tutoriali", icon='URL').url = "https://www.youtube.com/@easyformstudio/playlists"
         layout.operator("wm.url_open", text="Support").url = "mailto:easyformstudio@gmail.com"
 
         layout.separator()

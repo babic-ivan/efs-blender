@@ -13,8 +13,10 @@ from bpy.app.handlers import persistent
 EXTENSIONS_AUTO_ENABLE = (
     "bl_ext.system.efs",
     "bl_ext.system.measureit",
+    "bl_ext.system.bool_tool",
     "bl_ext.user_default.efs",
     "bl_ext.blender_org.measureit",
+    "bl_ext.blender_org.bool_tool",
 )
 
 
@@ -35,6 +37,8 @@ def _viewport_defaults():
             space = area.spaces.active
             # Keep the sidebar (EFS panel) open by default.
             space.show_region_ui = True
+            # No "Adjust Last Operation" popup in the corner.
+            space.show_region_hud = False
 
 
 def _enable_extensions():
@@ -199,6 +203,7 @@ def _kiosk_ui():
     _simplify_topbar()
     _trim_toolbar()
     _activate_efs_tool()
+    _viewport_defaults()
     return None
 
 

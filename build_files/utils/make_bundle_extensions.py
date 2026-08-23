@@ -34,6 +34,9 @@ DEFAULT_EFS_SRC = os.path.join(
 DEFAULT_MEASUREIT_SRC = os.path.join(
     HOME, "Library", "Application Support", "Blender", "5.0",
     "extensions", "blender_org", "measureit")
+DEFAULT_BOOLTOOL_SRC = os.path.join(
+    HOME, "Library", "Application Support", "Blender", "5.0",
+    "extensions", "blender_org", "bool_tool")
 
 # Official EFS publish set (keep in sync with _dev/utils.ipynb).
 # "wheels" is additionally required: blender_manifest.toml references the
@@ -98,6 +101,7 @@ def main():
     parser.add_argument("--app", default=DEFAULT_APP)
     parser.add_argument("--efs-src", default=DEFAULT_EFS_SRC)
     parser.add_argument("--measureit-src", default=DEFAULT_MEASUREIT_SRC)
+    parser.add_argument("--booltool-src", default=DEFAULT_BOOLTOOL_SRC)
     args = parser.parse_args()
 
     version_dir = find_version_dir(args.app)
@@ -108,8 +112,9 @@ def main():
     print(f"Bundling into: {ext_dir}")
     copy_efs(args.efs_src, os.path.join(ext_dir, "efs"))
     copy_measureit(args.measureit_src, os.path.join(ext_dir, "measureit"))
+    copy_measureit(args.booltool_src, os.path.join(ext_dir, "bool_tool"))
 
-    for pkg in ("efs", "measureit"):
+    for pkg in ("efs", "measureit", "bool_tool"):
         manifest = os.path.join(ext_dir, pkg, "blender_manifest.toml")
         if not os.path.isfile(manifest):
             sys.exit(f"ERROR: manifest missing for {pkg}")
