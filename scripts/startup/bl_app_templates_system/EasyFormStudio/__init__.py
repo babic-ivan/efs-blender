@@ -53,16 +53,22 @@ def _enable_extensions():
 SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View", "Animation", "Display"}
 
 
+def _hide_panel(cls):
+    # Hide via poll instead of unregistering: the owning add-on can still
+    # unregister its classes cleanly on exit or reload.
+    if getattr(cls, "_efs_hidden", False):
+        return
+    cls.poll = classmethod(lambda _cls, _context: False)
+    cls._efs_hidden = True
+
+
 def _hide_sidebar_tabs():
     for cls in list(bpy.types.Panel.__subclasses__()):
         if (getattr(cls, "bl_space_type", None) == 'VIEW_3D'
                 and getattr(cls, "bl_region_type", None) == 'UI'
                 and getattr(cls, "bl_category", None) in SIDEBAR_HIDE_CATEGORIES
                 and getattr(cls, "is_registered", False)):
-            try:
-                bpy.utils.unregister_class(cls)
-            except Exception:
-                pass
+            _hide_panel(cls)
 
 
 def _hide_view_layer_core_panels():
@@ -74,10 +80,7 @@ def _hide_view_layer_core_panels():
                 and getattr(cls, "bl_space_type", None) == 'PROPERTIES'
                 and not getattr(cls, "__module__", "").startswith("bl_ext.")
                 and getattr(cls, "is_registered", False)):
-            try:
-                bpy.utils.unregister_class(cls)
-            except Exception:
-                pass
+            _hide_panel(cls)
 
 
 _view3d_menus_draw_orig = None
@@ -159,11 +162,42 @@ def _trim_toolbar():
             pass
 
 
+def _topbar_draw_right(self, context):
+    layout = self.layout
+    # Keep report banners when the status bar is hidden; the scene and
+    # view-layer selectors are not part of the EasyFormStudio workflow.
+    if not context.screen.show_statusbar:
+        layout.template_reports_banner()
+        layout.template_running_jobs()
+
+
+def _simplify_topbar():
+    bpy.types.TOPBAR_HT_upper_bar.draw_right = _topbar_draw_right
+
+
+def _activate_efs_tool():
+    # Make the EFS tool the active tool in the 3D viewport.
+    if bpy.app.background:
+        return
+    for window in bpy.context.window_manager.windows:
+        for area in window.screen.areas:
+            if area.type == 'VIEW_3D':
+                region = next((r for r in area.regions if r.type == 'WINDOW'), None)
+                with bpy.context.temp_override(window=window, area=area, region=region):
+                    try:
+                        bpy.ops.wm.tool_set_by_id(name="efs.tool")
+                    except Exception:
+                        pass
+                return
+
+
 def _kiosk_ui():
     _hide_sidebar_tabs()
     _hide_view_layer_core_panels()
     _simplify_view3d_menus()
+    _simplify_topbar()
     _trim_toolbar()
+    _activate_efs_tool()
     return None
 
 
