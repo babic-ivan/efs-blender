@@ -27,16 +27,18 @@ import sys
 
 HOME = os.path.expanduser("~")
 
-DEFAULT_APP = os.path.join(HOME, "build_darwin", "bin", "EasyFormStudio.app")
-DEFAULT_EFS_SRC = os.path.join(
-    HOME, "Library", "Application Support", "Blender", "5.0",
-    "extensions", "user_default", "efs")
-DEFAULT_MEASUREIT_SRC = os.path.join(
-    HOME, "Library", "Application Support", "Blender", "5.0",
-    "extensions", "blender_org", "measureit")
-DEFAULT_BOOLTOOL_SRC = os.path.join(
-    HOME, "Library", "Application Support", "Blender", "5.0",
-    "extensions", "blender_org", "bool_tool")
+if sys.platform == "win32":
+    _EXT = os.path.join(os.environ.get("APPDATA", HOME), "Blender Foundation",
+                        "Blender", "5.0", "extensions")
+    DEFAULT_APP = os.path.join(HOME, "build_windows", "bin", "Release")
+else:
+    _EXT = os.path.join(HOME, "Library", "Application Support", "Blender",
+                        "5.0", "extensions")
+    DEFAULT_APP = os.path.join(HOME, "build_darwin", "bin", "EasyFormStudio.app")
+
+DEFAULT_EFS_SRC = os.path.join(_EXT, "user_default", "efs")
+DEFAULT_MEASUREIT_SRC = os.path.join(_EXT, "blender_org", "measureit")
+DEFAULT_BOOLTOOL_SRC = os.path.join(_EXT, "blender_org", "bool_tool")
 
 # Official EFS publish set (keep in sync with _dev/utils.ipynb).
 # "wheels" is additionally required: blender_manifest.toml references the
@@ -49,7 +51,7 @@ EFS_FOLDERS = [
 EFS_FILES = [
     "__init__.py", "efs_cabinet_helper_functions.py", "efs_cabinet_props.py",
     "efs_cabinet_ui.py", "efs_cabinet.py", "efs_constants.py", "efs_exporter.py",
-    "efs_labels.py", "efs_fonts.py", "efs_ai.py", "ai_commands_catalog.txt", "efs_assembly.py", "efs_web_parts.py", "efs_variants.py", "efs_check.py", "efs_render.py", "efs_utils.py", "efs_parts.py", "efs_dxf.py",
+    "efs_labels.py", "efs_fonts.py", "efs_ai.py", "ai_commands_catalog.txt", "efs_assembly.py", "efs_web_parts.py", "efs_variants.py", "efs_check.py", "efs_render.py", "efs_order.py", "efs_utils.py", "efs_parts.py", "efs_dxf.py",
     "efs_pdf_drawing.py", "efs_nesting.py", "efs_hardware.py", "efs_mpr.py", "efs_cix.py",
     "efs_quote.py", "efs_label_print.py", "img_loader.py", "preferences.py",
     "efs.blend", "efs_pro", "prices.xlsx", "blender_manifest.toml",
@@ -59,11 +61,15 @@ JUNK = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", ".git")
 
 
 def find_version_dir(app):
-    resources = os.path.join(app, "Contents", "Resources")
-    for name in sorted(os.listdir(resources)):
-        if re.fullmatch(r"\d+\.\d+", name):
-            return os.path.join(resources, name)
-    sys.exit(f"No version folder found in {resources}")
+    # macOS bundle: Contents/Resources/<ver>; Windows: direktno <app>/<ver>
+    roots = [os.path.join(app, "Contents", "Resources"), app]
+    for root in roots:
+        if not os.path.isdir(root):
+            continue
+        for name in sorted(os.listdir(root)):
+            if re.fullmatch(r"\d+\.\d+", name):
+                return os.path.join(root, name)
+    sys.exit(f"No version folder found under {app}")
 
 
 def copy_efs(src, dest):
