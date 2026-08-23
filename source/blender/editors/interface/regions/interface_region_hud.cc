@@ -107,6 +107,10 @@ struct HudRegionData {
 
 static bool last_redo_poll(const bContext *C, short region_type, int region_index_hint)
 {
+  /* EasyFormStudio: the "Adjust Last Operation" popup is not part of the
+   * simplified UI (operator options remain available via F9). */
+  return false;
+
   wmOperator *op = WM_operator_last_redo(C);
   if (op == nullptr) {
     return false;

@@ -53,8 +53,9 @@ def _enable_extensions():
 
 
 # Sidebar (N-panel) tabs hidden in the 3D viewport - only EFS tabs remain.
-# "Display" is MeasureIt's tab (EFS drives MeasureIt programmatically).
-SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View", "Animation", "Display"}
+# "Display" is MeasureIt's tab, "Edit" is Bool Tool's (both are driven
+# through EFS / the toolbar, their panels stay hidden).
+SIDEBAR_HIDE_CATEGORIES = {"Item", "Tool", "View", "Animation", "Display", "Edit"}
 
 
 def _hide_panel(cls):
@@ -196,7 +197,11 @@ def _activate_efs_tool():
                 return
 
 
+_kiosk_runs = 0
+
+
 def _kiosk_ui():
+    global _kiosk_runs
     _hide_sidebar_tabs()
     _hide_view_layer_core_panels()
     _simplify_view3d_menus()
@@ -204,7 +209,10 @@ def _kiosk_ui():
     _trim_toolbar()
     _activate_efs_tool()
     _viewport_defaults()
-    return None
+    # Run once more a bit later: extensions (Bool Tool, ...) register their
+    # panels after the first pass.
+    _kiosk_runs += 1
+    return 2.0 if _kiosk_runs < 2 else None
 
 
 def unregister():
