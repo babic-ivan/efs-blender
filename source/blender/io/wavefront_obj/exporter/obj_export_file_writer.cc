@@ -194,7 +194,7 @@ void OBJWriter::write_header() const
 {
   using namespace std::string_literals;
   FormatHandler fh;
-  fh.write_string("# Blender "s + BKE_blender_version_string());
+  fh.write_string("# EasyFormStudio "s + BKE_blender_version_string());
   fh.write_string("# www.blender.org");
   fh.write_to_file(outfile_);
 }
@@ -619,7 +619,7 @@ void MTLWriter::write_header(const char *blen_filepath)
   const char *blen_basename = (blen_filepath && blen_filepath[0] != '\0') ?
                                   BLI_path_basename(blen_filepath) :
                                   "None";
-  fmt_handler_.write_string("# Blender "s + BKE_blender_version_string() + " MTL File: '" +
+  fmt_handler_.write_string("# EasyFormStudio "s + BKE_blender_version_string() + " MTL File: '" +
                             blen_basename + "'");
   fmt_handler_.write_string("# www.blender.org");
 }

@@ -105,15 +105,15 @@ def sync_calc_stale_repo_directories(repos_notify):
 def sync_apply_locked(repos_notify, repos_notify_files, unique_ext):
     """
     Move files with a unique extension to their final location
-    with a locked repository to ensure multiple Blender instances never overwrite
+    with a locked repository to ensure multiple EasyFormStudio instances never overwrite
     repositories at the same time.
 
     Lock the repositories for the shortest time reasonably possible.
-    If locking fails, this is OK as it's possible another Blender got here first.
+    If locking fails, this is OK as it's possible another EasyFormStudio got here first.
 
-    Another reason this is needed is exiting Blender will close the sync sub-processes,
+    Another reason this is needed is exiting EasyFormStudio will close the sync sub-processes,
     this is OK as long as the final location of the repositories JSON isn't being written
-    to the moment Blender and its sub-processes exit.
+    to the moment EasyFormStudio and its sub-processes exit.
     """
     # TODO: handle the case of cruft being left behind, perhaps detect previous
     # files created with a `unique_ext` (`@{HEX}` extension) and removing them.

@@ -39,7 +39,7 @@ class GlTF2Exporter:
             copyright=copyright,
             extensions=None,
             extras=None,
-            generator='Khronos glTF Blender I/O v' + get_version_string(),
+            generator='Khronos glTF EasyFormStudio I/O v' + get_version_string(),
             min_version=None,
             version='2.0')
 

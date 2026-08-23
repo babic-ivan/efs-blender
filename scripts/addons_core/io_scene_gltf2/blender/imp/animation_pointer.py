@@ -15,7 +15,7 @@ from .camera import BlenderCamera
 
 
 class BlenderPointerAnim():
-    """Blender Pointer Animation."""
+    """EasyFormStudio Pointer Animation."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 
@@ -69,7 +69,7 @@ class BlenderPointerAnim():
         # Camera
         if len(pointer_tab) == 5 and pointer_tab[1] == "cameras" and \
                 pointer_tab[3] in ["perspective"] and \
-                pointer_tab[4] in ["znear", "zfar"]:  # Aspect Ratio is not something we can animate in Blender
+                pointer_tab[4] in ["znear", "zfar"]:  # Aspect Ratio is not something we can animate in EasyFormStudio
             blender_path = {
                 "znear": "clip_start",
                 "zfar": "clip_end"

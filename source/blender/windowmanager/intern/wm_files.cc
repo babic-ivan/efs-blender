@@ -933,7 +933,7 @@ static void file_read_reports_finalize(BlendFileReadReport *bf_reports)
                                   nullptr);
 
   CLOG_INFO(
-      &LOG, "Blender file read in %.0fm%.2fs", duration_whole_minutes, duration_whole_seconds);
+      &LOG, "EasyFormStudio file read in %.0fm%.2fs", duration_whole_minutes, duration_whole_seconds);
   CLOG_INFO(&LOG,
             " * Loading libraries: %.0fm%.2fs",
             duration_libraries_minutes,
@@ -995,9 +995,9 @@ static void file_read_reports_finalize(BlendFileReadReport *bf_reports)
   {
     BKE_reportf(bf_reports->reports,
                 RPT_WARNING,
-                "Proxies have been removed from Blender (%d proxies were automatically converted "
+                "Proxies have been removed from EasyFormStudio (%d proxies were automatically converted "
                 "to library overrides, %d proxies could not be converted and were cleared). "
-                "Consider re-saving any library .blend file with the newest Blender version",
+                "Consider re-saving any library .blend file with the newest EasyFormStudio version",
                 bf_reports->count.proxies_to_lib_overrides_success,
                 bf_reports->count.proxies_to_lib_overrides_failures);
   }
@@ -1018,7 +1018,7 @@ static void file_read_reports_finalize(BlendFileReadReport *bf_reports)
         bf_reports->reports,
         RPT_WARNING,
         "Loaded a pre-2.50 blend file, animation data has not been loaded. Open & save the file "
-        "with Blender v4.5 to convert animation data.");
+        "with EasyFormStudio v4.5 to convert animation data.");
   }
 }
 
@@ -1909,7 +1909,7 @@ static ImBuf *blend_file_thumb_from_screenshot(bContext *C, BlendThumbnail **r_t
     char version_str[10];
     SNPRINTF(version_str, "%d.%01d", BLENDER_VERSION / 100, BLENDER_VERSION % 100);
     IMB_metadata_ensure(&ibuf->metadata);
-    IMB_metadata_set_field(ibuf->metadata, "Thumb::Blender::Version", version_str);
+    IMB_metadata_set_field(ibuf->metadata, "Thumb::EasyFormStudio::Version", version_str);
   }
 
   /* Must be freed by caller. */
@@ -2016,7 +2016,7 @@ static ImBuf *blend_file_thumb_from_camera(const bContext *C,
     char version_str[10];
     SNPRINTF(version_str, "%d.%01d", BLENDER_VERSION / 100, BLENDER_VERSION % 100);
     IMB_metadata_ensure(&ibuf->metadata);
-    IMB_metadata_set_field(ibuf->metadata, "Thumb::Blender::Version", version_str);
+    IMB_metadata_set_field(ibuf->metadata, "Thumb::EasyFormStudio::Version", version_str);
 
     /* BLEN_THUMB_SIZE is size of thumbnail inside blend file: 128x128. */
     ImBuf *thumb_ibuf = IMB_scale_into_new(
@@ -3405,7 +3405,7 @@ void WM_OT_open_mainfile(wmOperatorType *ot)
 {
   ot->name = "Open";
   ot->idname = "WM_OT_open_mainfile";
-  ot->description = "Open a Blender file";
+  ot->description = "Open a EasyFormStudio file";
   ot->get_description = wm_open_mainfile_get_description;
 
   ot->invoke = wm_open_mainfile_invoke;
@@ -4254,7 +4254,7 @@ static std::string wm_save_mainfile_get_description(bContext * /*C*/,
 {
   if (RNA_boolean_get(ptr, "incremental")) {
     return TIP_(
-        "Save the current Blender file with a numerically incremented name that does not "
+        "Save the current EasyFormStudio file with a numerically incremented name that does not "
         "overwrite any existing files");
   }
   return "";
@@ -4264,7 +4264,7 @@ void WM_OT_save_mainfile(wmOperatorType *ot)
 {
   ot->name = "Save EasyFormStudio File";
   ot->idname = "WM_OT_save_mainfile";
-  ot->description = "Save the current Blender file";
+  ot->description = "Save the current EasyFormStudio file";
 
   ot->invoke = wm_save_mainfile_invoke;
   ot->exec = wm_save_as_mainfile_exec;
@@ -4287,14 +4287,14 @@ void WM_OT_save_mainfile(wmOperatorType *ot)
                   "Remap Relative",
                   "Remap relative paths when saving to a different directory");
 
-  prop = RNA_def_boolean(ot->srna, "exit", false, "Exit", "Exit Blender after saving");
+  prop = RNA_def_boolean(ot->srna, "exit", false, "Exit", "Exit EasyFormStudio after saving");
   RNA_def_property_flag(prop, PROP_HIDDEN | PROP_SKIP_SAVE);
 
   prop = RNA_def_boolean(ot->srna,
                          "incremental",
                          false,
                          "Incremental",
-                         "Save the current Blender file with a numerically incremented name that "
+                         "Save the current EasyFormStudio file with a numerically incremented name that "
                          "does not overwrite any existing files");
   RNA_def_property_flag(prop, PROP_HIDDEN | PROP_SKIP_SAVE);
 
@@ -4636,7 +4636,7 @@ void wm_test_foreign_file_warning(bContext *C)
     CTX_wm_window_set(C, win);
     alert(C,
           RPT_("Unable to Load File"),
-          RPT_("The file is not a valid Blender file."),
+          RPT_("The file is not a valid EasyFormStudio file."),
           ui::AlertIcon::Error,
           false);
 
@@ -4678,10 +4678,10 @@ static void file_overwrite_detailed_info_show(ui::Layout &parent_layout, Main *b
     char message_line1[256];
     char message_line2[256];
     SNPRINTF(message_line1,
-             RPT_("This file was saved by a newer version of Blender (%s)."),
+             RPT_("This file was saved by a newer version of EasyFormStudio (%s)."),
              writer_ver_str);
     SNPRINTF(message_line2,
-             RPT_("Saving it with this Blender (%s) may cause loss of data."),
+             RPT_("Saving it with this EasyFormStudio (%s) may cause loss of data."),
              current_ver_str);
     layout.label(message_line1, ICON_NONE);
     layout.label(message_line2, ICON_NONE);
@@ -4692,7 +4692,7 @@ static void file_overwrite_detailed_info_show(ui::Layout &parent_layout, Main *b
       layout.separator(1.4f);
     }
 
-    layout.label(RPT_("This file is managed by the Blender asset system. It can only be"),
+    layout.label(RPT_("This file is managed by the EasyFormStudio asset system. It can only be"),
                  ICON_NONE);
     layout.label(RPT_("saved as a new, regular file."), ICON_NONE);
   }
@@ -4803,11 +4803,11 @@ static ui::Block *block_create_save_file_overwrite_dialog(bContext *C, ARegion *
                  ICON_NONE,
                  true,
                  false);
-      uiItemL_ex(&layout, RPT_("with an older Blender version?"), ICON_NONE, true, false);
+      uiItemL_ex(&layout, RPT_("with an older EasyFormStudio version?"), ICON_NONE, true, false);
     }
     else {
       uiItemL_ex(
-          &layout, RPT_("Overwrite file with an older Blender version?"), ICON_NONE, true, false);
+          &layout, RPT_("Overwrite file with an older EasyFormStudio version?"), ICON_NONE, true, false);
     }
   }
   else if (bmain->is_asset_edit_file) {

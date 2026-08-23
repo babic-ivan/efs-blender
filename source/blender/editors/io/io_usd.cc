@@ -68,7 +68,7 @@ const EnumPropertyItem rna_enum_usd_mtl_name_collision_mode_items[] = {
      "MAKE_UNIQUE",
      0,
      "Make Unique",
-     "Import each USD material as a unique Blender material"},
+     "Import each USD material as a unique EasyFormStudio material"},
     {int(MtlNameCollisionMode::ReferenceExisting),
      "REFERENCE_EXISTING",
      0,
@@ -83,13 +83,13 @@ const EnumPropertyItem rna_enum_usd_property_import_mode_items[] = {
      "USER",
      0,
      "User",
-     "Import USD attributes in the 'userProperties' namespace as Blender custom "
+     "Import USD attributes in the 'userProperties' namespace as EasyFormStudio custom "
      "properties. The namespace will be stripped from the property names"},
     {int(PropertyImportMode::All),
      "ALL",
      0,
      "All Custom",
-     "Import all USD custom attributes as Blender custom properties. "
+     "Import all USD custom attributes as EasyFormStudio custom properties. "
      "Namespaces will be retained in the property names"},
     {0, nullptr, 0, nullptr, nullptr},
 };
@@ -780,7 +780,7 @@ void WM_OT_usd_export(wmOperatorType *ot)
                   "author_blender_name",
                   true,
                   "EasyFormStudio Names",
-                  "Author USD custom attributes containing the original Blender object and "
+                  "Author USD custom attributes containing the original EasyFormStudio object and "
                   "object data names");
 
   RNA_def_boolean(
@@ -1280,7 +1280,7 @@ void WM_OT_usd_import(wmOperatorType *ot)
                rna_enum_usd_property_import_mode_items,
                int(PropertyImportMode::All),
                "Custom Properties",
-               "Behavior when importing USD attributes as Blender custom properties");
+               "Behavior when importing USD attributes as EasyFormStudio custom properties");
 
   RNA_def_boolean(
       ot->srna,

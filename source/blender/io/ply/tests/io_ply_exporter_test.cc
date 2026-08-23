@@ -157,7 +157,7 @@ TEST_F(PLYExportTest, WriteHeaderAscii)
   std::string expected =
       "ply\n"
       "format ascii 1.0\n"
-      "comment Created in Blender version " +
+      "comment Created in EasyFormStudio version " +
       version +
       "\n"
       "element vertex 8\n"
@@ -195,7 +195,7 @@ TEST_F(PLYExportTest, WriteHeaderBinary)
   std::string expected =
       "ply\n"
       "format binary_little_endian 1.0\n"
-      "comment Created in Blender version " +
+      "comment Created in EasyFormStudio version " +
       version +
       "\n"
       "element vertex 8\n"

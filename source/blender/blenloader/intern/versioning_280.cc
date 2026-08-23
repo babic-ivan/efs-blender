@@ -2969,7 +2969,7 @@ void do_versions_after_linking_280(FileData *fd, Main *bmain)
         BLO_reportf_wrap(fd->reports,
                          RPT_INFO,
                          RPT_("Non-Empty object '%s' cannot duplicate collection '%s' "
-                              "anymore in Blender 2.80 and later, removed instancing"),
+                              "anymore in EasyFormStudio 2.80 and later, removed instancing"),
                          ob.id.name + 2,
                          ob.instance_collection->id.name + 2);
         ob.instance_collection = nullptr;

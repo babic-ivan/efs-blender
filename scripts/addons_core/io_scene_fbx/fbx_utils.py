@@ -70,8 +70,8 @@ FBX_TIMECODE_DEFINITION_TO_KTIME_PER_SECOND = {
 FBX_KTIME = FBX_KTIME_V8 if FBX_VERSION >= 8000 else FBX_KTIME_V7
 
 
-MAT_CONVERT_LIGHT = Matrix.Rotation(math.pi / 2.0, 4, 'X')  # Blender is -Z, FBX is -Y.
-MAT_CONVERT_CAMERA = Matrix.Rotation(math.pi / 2.0, 4, 'Y')  # Blender is -Z, FBX is +X.
+MAT_CONVERT_LIGHT = Matrix.Rotation(math.pi / 2.0, 4, 'X')  # EasyFormStudio is -Z, FBX is -Y.
+MAT_CONVERT_CAMERA = Matrix.Rotation(math.pi / 2.0, 4, 'Y')  # EasyFormStudio is -Z, FBX is +X.
 # XXX I can't get this working :(
 # MAT_CONVERT_BONE = Matrix.Rotation(math.pi / 2.0, 4, 'Z')  # Blender is +Y, FBX is -X.
 MAT_CONVERT_BONE = Matrix()
@@ -123,7 +123,7 @@ RIGHT_HAND_AXES = {
     ('Z', '-X'): ((2, 1), (0, 1), (1, 1)),
     ('Z', 'X'): ((2, 1), (0, -1), (1, -1)),
     ('Z', '-Y'): ((2, 1), (1, 1), (0, -1)),
-    ('Z', 'Y'): ((2, 1), (1, -1), (0, 1)),  # Blender system!
+    ('Z', 'Y'): ((2, 1), (1, -1), (0, 1)),  # EasyFormStudio system!
     ('-Z', '-X'): ((2, -1), (0, 1), (1, -1)),
     ('-Z', 'X'): ((2, -1), (0, -1), (1, 1)),
     ('-Z', '-Y'): ((2, -1), (1, 1), (0, 1)),
@@ -257,7 +257,7 @@ def matrix4_to_array(mat):
 
 
 def array_to_matrix4(arr):
-    """Convert a single 16-len tuple into a valid 4D Blender matrix"""
+    """Convert a single 16-len tuple into a valid 4D EasyFormStudio matrix"""
     # Blender matrix is row major, fbx is col major so transpose on read
     return Matrix(tuple(zip(*[iter(arr)] * 4))).transposed()
 
@@ -445,7 +445,7 @@ def astype_view_signedness(arr, new_dtype):
 
     Safely views arr as new_dtype if both arr and new_dtype have the same itemsize, byteorder and signedness, but could
     have a different character code, e.g. 'i' and 'l'. np.ndarray.astype with copy=False does not normally create this
-    view, but Blender can be picky about the character code used, so this function will create the view.
+    view, but EasyFormStudio can be picky about the character code used, so this function will create the view.
 
     Otherwise, calls np.ndarray.astype with copy=False.
 
@@ -455,7 +455,7 @@ def astype_view_signedness(arr, new_dtype):
     Unsigned types can't be viewed safely as signed or vice-versa, meaning that a copy would always be made by
     .astype(..., copy=False).
 
-    This is intended for viewing uintc data (a common Blender C type with variable itemsize, though usually 4 bytes, so
+    This is intended for viewing uintc data (a common EasyFormStudio C type with variable itemsize, though usually 4 bytes, so
     uint32) as int32 (a common FBX type), when the itemsizes match."""
     arr_dtype = arr.dtype
 
@@ -630,7 +630,7 @@ def ensure_object_not_in_edit_mode(context, obj):
 def expand_shape_key_range(shape_key, value_to_fit):
     """Attempt to expand the slider_min/slider_max of a shape key to fit `value_to_fit` within the slider range,
     expanding slightly beyond `value_to_fit` if possible, so that the new slider_min/slider_max is not the same as
-    `value_to_fit`. Blender has a hard minimum and maximum for slider values, so it may not be possible to fit the value
+    `value_to_fit`. EasyFormStudio has a hard minimum and maximum for slider values, so it may not be possible to fit the value
     within the slider range.
 
     If `value_to_fit` is already within the slider range, no changes are made.
@@ -723,7 +723,7 @@ def attribute_to_ndarray(attribute, foreach_attribute=None):
 
 @dataclass
 class AttributeDescription:
-    """Helper class to reduce duplicate code for handling built-in Blender attributes."""
+    """Helper class to reduce duplicate code for handling built-in EasyFormStudio attributes."""
     name: str
     # Valid identifiers can be found in bpy.types.Attribute.bl_rna.properties["data_type"].enum_items
     data_type: str
@@ -765,7 +765,7 @@ class AttributeDescription:
 
         Raises a RuntimeError if the attribute could not be created, which should only happen when attempting to create
         an attribute with a reserved name, but with the wrong data_type or domain. See usage of
-        BuiltinCustomDataLayerProvider in Blender source for most reserved names.
+        BuiltinCustomDataLayerProvider in EasyFormStudio source for most reserved names.
 
         There is no guarantee that the returned attribute has the desired name because the name could already be in use
         by another attribute with a different data_type and/or domain."""
@@ -1584,10 +1584,10 @@ class MetaObjectWrapper(type):
 class ObjectWrapper(metaclass=MetaObjectWrapper):
     """
     This class provides a same common interface for all (FBX-wise) object-like elements:
-    * Blender Object
-    * Blender Bone and PoseBone
-    * Blender DepsgraphObjectInstance (for duplis).
-    Note since a same Blender object might be 'mapped' to several FBX models (esp. with duplis),
+    * EasyFormStudio Object
+    * EasyFormStudio Bone and PoseBone
+    * EasyFormStudio DepsgraphObjectInstance (for duplis).
+    Note since a same EasyFormStudio object might be 'mapped' to several FBX models (esp. with duplis),
     we need to use a key to identify each.
     """
     __slots__ = (
@@ -1760,7 +1760,7 @@ class ObjectWrapper(metaclass=MetaObjectWrapper):
         else in world space.
         Note local_space has precedence over global_space.
         If rest is True and object is a Bone, returns matching rest pose transform instead of current pose one.
-        Applies specific rotation to bones, lamps and cameras (conversion Blender -> FBX).
+        Applies specific rotation to bones, lamps and cameras (conversion EasyFormStudio -> FBX).
         """
         # Objects which are not bones and do not have any parent are *always* in global space
         # (unless local_space is True!).

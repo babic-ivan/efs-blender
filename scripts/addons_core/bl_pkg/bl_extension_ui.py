@@ -4,7 +4,7 @@
 
 """
 GUI (WARNING) this is a hack!
-Written to allow a UI without modifying Blender.
+Written to allow a UI without modifying EasyFormStudio.
 """
 
 __all__ = (
@@ -342,9 +342,9 @@ def addons_panel_draw_missing_with_extension_impl(
 
     if repo is None:
         # Most likely the user manually removed this.
-        box.label(text="Blender's extension repository not found!", icon='ERROR')
+        box.label(text="EasyFormStudio's extension repository not found!", icon='ERROR')
     elif not repo.enabled:
-        box.label(text="Blender's extension repository must be enabled to install extensions!", icon='ERROR')
+        box.label(text="EasyFormStudio's extension repository must be enabled to install extensions!", icon='ERROR')
         repo_index = -1
     else:
         # Ensure the remote data is available from which to install the extensions.
@@ -354,7 +354,7 @@ def addons_panel_draw_missing_with_extension_impl(
         pkg_manifest_remote = repo_cache_store.refresh_remote_from_directory(directory=repo.directory, error_fn=print)
         if pkg_manifest_remote is None:
             row = box.row()
-            row.label(text="Blender's extension repository must be refreshed!", icon='ERROR')
+            row.label(text="EasyFormStudio's extension repository must be refreshed!", icon='ERROR')
             # Ideally this would only sync one repository, but there is no operator to do this
             # and this one corner-case doesn't justify adding a new operator.
             rowsub = row.row()

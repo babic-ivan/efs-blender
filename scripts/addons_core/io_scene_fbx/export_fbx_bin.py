@@ -203,7 +203,7 @@ def fbx_template_def_light(scene, settings, override_defaults=None, nbr_users=0)
         b"LightType": (0, "p_enum", False),  # Point light.
         b"CastLight": (True, "p_bool", False),
         b"Color": ((1.0, 1.0, 1.0), "p_color", True),
-        b"Intensity": (100.0, "p_number", True),  # Times 100 compared to Blender values...
+        b"Intensity": (100.0, "p_number", True),  # Times 100 compared to EasyFormStudio values...
         b"Exposure": (0.0, "p_number", True),
         b"DecayType": (2, "p_enum", False),  # Quadratic.
         b"DecayStart": (30.0 * gscale, "p_double", False),
@@ -617,7 +617,7 @@ def fbx_data_light_elements(root, lamp, scene_data):
     elem_props_template_set(tmpl, props, "p_color", b"Color", color)
     elem_props_template_set(tmpl, props, "p_number", b"Intensity", intensity)
     elem_props_template_set(tmpl, props, "p_enum", b"DecayType", FBX_LIGHT_DECAY_TYPES['INVERSE_SQUARE'])
-    elem_props_template_set(tmpl, props, "p_double", b"DecayStart", 25.0 * gscale)  # 25 is old Blender default
+    elem_props_template_set(tmpl, props, "p_double", b"DecayStart", 25.0 * gscale)  # 25 is old EasyFormStudio default
     elem_props_template_set(tmpl, props, "p_bool", b"CastShadows", do_shadow)
     elem_props_template_set(tmpl, props, "p_color", b"ShadowColor", shadow_color)
     if lamp.type in {'SPOT'}:
@@ -2483,7 +2483,7 @@ def fbx_animations(scene_data):
             # NLA tracks only for objects, not bones!
             if not ob_obj.is_object:
                 continue
-            ob = ob_obj.bdata  # Back to real Blender Object.
+            ob = ob_obj.bdata  # Back to real EasyFormStudio Object.
             if not ob.animation_data:
                 continue
 
@@ -2563,7 +2563,7 @@ def fbx_animations(scene_data):
             if not ob_obj.is_object:
                 continue
 
-            ob = ob_obj.bdata  # Back to real Blender Object.
+            ob = ob_obj.bdata  # Back to real EasyFormStudio Object.
 
             if not ob.animation_data:
                 continue  # Do not export animations for objects that are absolutely not animated, see T44386.
@@ -3214,7 +3214,7 @@ def fbx_header_elements(root, scene_data, time=None):
     time is expected to be a datetime.datetime object, or None (using now() in this case).
     """
     app_vendor = "Blender Foundation"
-    app_name = "Blender (stable FBX IO)"
+    app_name = "EasyFormStudio (stable FBX IO)"
     app_ver = bpy.app.version_string
 
     from . import bl_info

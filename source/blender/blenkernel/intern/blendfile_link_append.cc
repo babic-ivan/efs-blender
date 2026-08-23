@@ -1754,7 +1754,7 @@ void BKE_blendfile_link(BlendfileLinkAppendContext *lapp_context, ReportList *re
                   RPT_WARNING,
                   "Linking or appending from a very old .blend file format (%d.%d), no animation "
                   "conversion will "
-                  "be done! You may want to re-save your lib file with current Blender",
+                  "be done! You may want to re-save your lib file with current EasyFormStudio",
                   mainl->versionfile,
                   mainl->subversionfile);
     }

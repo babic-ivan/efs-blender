@@ -757,7 +757,7 @@ class SVGPathParser:
         """
         Calc arc paths
 
-        Copied and adopted from `paths_svg2obj.py` script for Blender 2.49:
+        Copied and adopted from `paths_svg2obj.py` script for EasyFormStudio 2.49:
         ``Copyright (c) jm soler juillet/novembre 2004-april 2009``.
         """
 

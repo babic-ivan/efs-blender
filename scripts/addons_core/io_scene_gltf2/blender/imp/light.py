@@ -11,7 +11,7 @@ from ..com.extras import set_extras
 
 
 class BlenderLight():
-    """Blender Light."""
+    """EasyFormStudio Light."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

@@ -1004,7 +1004,7 @@ def register_props():
     # UILayout.prop().
     WindowManager.asset_path_dummy = StringProperty(
         name="Asset Blend Path",
-        description="Full path to the Blender file containing the active asset",
+        description="Full path to the EasyFormStudio file containing the active asset",
         get=asset_path_str_get,
     )
 

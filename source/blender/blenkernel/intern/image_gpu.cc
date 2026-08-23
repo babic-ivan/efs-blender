@@ -284,7 +284,7 @@ static gpu::Texture **get_image_gpu_texture_ptr(Image *ima,
 
 static gpu::Texture *image_gpu_texture_error_create(eGPUTextureTarget textarget)
 {
-  CLOG_ERROR(&LOG, "Failed to create GPU texture from Blender image");
+  CLOG_ERROR(&LOG, "Failed to create GPU texture from EasyFormStudio image");
   switch (textarget) {
     case TEXTARGET_2D_ARRAY:
       return GPU_texture_create_error(2, true);

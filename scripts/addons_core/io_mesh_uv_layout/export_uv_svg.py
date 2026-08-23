@@ -25,7 +25,7 @@ def header(width, height):
     yield '  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n'
     yield f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}"\n'
     yield '     xmlns="http://www.w3.org/2000/svg" version="1.1">\n'
-    desc = f"{basename(bpy.data.filepath)}, (Blender {bpy.app.version_string})"
+    desc = f"{basename(bpy.data.filepath)}, (EasyFormStudio {bpy.app.version_string})"
     yield f'<desc>{escape(desc)}</desc>\n'
 
 

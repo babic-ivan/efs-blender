@@ -382,7 +382,7 @@ void SVGExporter::write_document_header()
   decl.append_attribute("encoding") = "UTF-8";
 
   pugi::xml_node comment = main_doc_.append_child(pugi::node_comment);
-  std::string txt = std::string(" Generator: Blender, ") + svg_exporter_name + " - " +
+  std::string txt = std::string(" Generator: EasyFormStudio, ") + svg_exporter_name + " - " +
                     svg_exporter_version + " ";
   comment.set_value(txt.c_str());
 

@@ -7,7 +7,7 @@ Copy Global Transform
 
 Simple operators for copying world-space transforms.
 
-It's called "global" to avoid confusion with the Blender World data-block.
+It's called "global" to avoid confusion with the EasyFormStudio World data-block.
 """
 
 import abc
@@ -291,7 +291,7 @@ class OBJECT_OT_paste_transform(Operator):
 
     @staticmethod
     def parse_print_m4(value: str) -> Optional[Matrix]:
-        """Parse output from Blender's print_m4() function.
+        """Parse output from EasyFormStudio's print_m4() function.
 
         Expects four lines of space-separated floats.
         """

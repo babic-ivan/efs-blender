@@ -146,13 +146,13 @@ class BlenderGlTF():
 
         # Meshes initialization
         for mesh in gltf.data.meshes if gltf.data.meshes is not None else []:
-            mesh.blender_name = {}  # caches Blender mesh name
+            mesh.blender_name = {}  # caches EasyFormStudio mesh name
 
         if gltf.data.extensions_used is not None and "KHR_animation_pointer" in gltf.data.extensions_used:
             # Meshes initialization
             if gltf.data.meshes:
                 for mesh in gltf.data.meshes:
-                    mesh.blender_name = {}  # caches Blender mesh name
+                    mesh.blender_name = {}  # caches EasyFormStudio mesh name
                     mesh.weight_animation_on_mesh = None  # For KHR_animation_pointer, weights on mesh
 
             for cam in gltf.data.cameras if gltf.data.cameras is not None else []:

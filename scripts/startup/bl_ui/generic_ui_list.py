@@ -4,13 +4,13 @@
 
 """
 This module (in particular the draw_ui_list function) lets you draw the commonly
-used UIList layout, seen all over Blender.
+used UIList layout, seen all over EasyFormStudio.
 
 This includes the list itself, and a column of buttons to the right of it, which
 contains buttons to add, remove, and move entries up or down, as well as a
 drop-down menu.
 
-You can get an example of how to use this via the Blender Text Editor->
+You can get an example of how to use this via the EasyFormStudio Text Editor->
 Templates->Ui List Generic.
 """
 
@@ -44,9 +44,9 @@ def draw_ui_list(
 
     :param layout: UILayout to draw the list in.
     :type layout: :class:`UILayout`
-    :param context: Blender context to get the list data from.
+    :param context: EasyFormStudio context to get the list data from.
     :type context: :class:`Context`
-    :param class_name: Name of the UIList class to draw. The default is the UIList class that ships with Blender.
+    :param class_name: Name of the UIList class to draw. The default is the UIList class that ships with EasyFormStudio.
     :type class_name: str
     :param unique_id: Unique identifier to differentiate this from other UI lists.
     :type unique_id: str
@@ -166,7 +166,7 @@ def _set_context_attr(context, data_path, value):
 
 class GenericUIListOperator:
     """Mix-in class containing functionality shared by operators
-    that deal with managing Blender list entries."""
+    that deal with managing EasyFormStudio list entries."""
     bl_options = {'REGISTER', 'UNDO', 'INTERNAL'}
 
     list_path: StringProperty()

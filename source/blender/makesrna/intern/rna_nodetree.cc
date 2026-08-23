@@ -6254,13 +6254,13 @@ static void def_sh_normal_map(BlenderRNA * /*brna*/, StructRNA *srna)
       {SHD_SPACE_BLENDER_OBJECT,
        "BLENDER_OBJECT",
        0,
-       "Blender Object Space",
-       "Object space normal mapping, compatible with Blender render baking"},
+       "EasyFormStudio Object Space",
+       "Object space normal mapping, compatible with EasyFormStudio render baking"},
       {SHD_SPACE_BLENDER_WORLD,
        "BLENDER_WORLD",
        0,
-       "Blender World Space",
-       "World space normal mapping, compatible with Blender render baking"},
+       "EasyFormStudio World Space",
+       "World space normal mapping, compatible with EasyFormStudio render baking"},
       {0, nullptr, 0, nullptr, nullptr},
   };
 

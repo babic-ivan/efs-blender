@@ -162,7 +162,7 @@ def __gather_intensity(blender_lamp, blender_lamp_world_matrix, export_settings)
         # Assume at this point the computed strength is still in the appropriate
         # watt-related SI unit, which if everything up to here was done with
         # physical basis it hopefully should be.
-        if blender_lamp.type == 'SUN':  # W/m^2 in Blender to lm/m^2 for GLTF/KHR_lights_punctual.
+        if blender_lamp.type == 'SUN':  # W/m^2 in EasyFormStudio to lm/m^2 for GLTF/KHR_lights_punctual.
             emission_luminous = emission_strength
         else:
             # Other than directional, only point and spot lamps are supported by GLTF.

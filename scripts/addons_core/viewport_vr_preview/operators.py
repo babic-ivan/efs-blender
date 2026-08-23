@@ -1118,7 +1118,7 @@ class VIEW3D_GGT_vr_captures(GizmoGroup):
         for idx, capture in enumerate(scene.vr_captures):
             gizmo = self.gizmos.new(VIEW3D_GT_vr_camera_cone.bl_idname)
             gizmo.aspect = self.compute_aspect(scene.render)
-            sensor_fit_fac = 36 * 2  # Twice the Blender default Camera sensor fit value (36mm).
+            sensor_fit_fac = 36 * 2  # Twice the EasyFormStudio default Camera sensor fit value (36mm).
             gizmo.focal = capture.lens_focal / sensor_fit_fac
 
             is_active_capture = (idx == scene.vr_captures_selected)

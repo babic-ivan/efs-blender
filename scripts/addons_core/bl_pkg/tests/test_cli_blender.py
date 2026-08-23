@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 """
-This test emulates running packaging commands with Blender via the command line.
+This test emulates running packaging commands with EasyFormStudio via the command line.
 
 This also happens to test:
 - Packages with ``*.whl``.
@@ -1300,7 +1300,7 @@ class TestUnknownType(TestWithTempBlenderUser_MixIn, unittest.TestCase):
     def test_unknown_type_skipped(self) -> None:
         """
         Check that packages with unknown types are silently skipped.
-        This allows repositories to contain extensions for future Blender versions
+        This allows repositories to contain extensions for future EasyFormStudio versions
         without causing errors in older versions.
         """
         import json

@@ -198,7 +198,7 @@ static void ensure_root_prim(pxr::UsdStageRefPtr stage, const USDExportParams &p
   for (const auto &path : pxr::SdfPath(params.root_prim_path).GetPrefixes()) {
     auto xform = pxr::UsdGeomXform::Define(stage, path);
     /* Tag generated primitives to allow filtering on import. */
-    xform.GetPrim().SetCustomDataByKey(pxr::TfToken("Blender:generated"), pxr::VtValue(true));
+    xform.GetPrim().SetCustomDataByKey(pxr::TfToken("EasyFormStudio:generated"), pxr::VtValue(true));
   }
 }
 
@@ -533,7 +533,7 @@ pxr::UsdStageRefPtr export_to_stage(const USDExportParams &params,
   worker_status->do_update = true;
 
   usd_stage->SetMetadata(pxr::UsdGeomTokens->metersPerUnit, double(scene->unit.scale_length));
-  usd_stage->GetRootLayer()->SetDocumentation(std::string("Blender v") +
+  usd_stage->GetRootLayer()->SetDocumentation(std::string("EasyFormStudio v") +
                                               BKE_blender_version_string());
 
   /* Set up the stage for animated data. */

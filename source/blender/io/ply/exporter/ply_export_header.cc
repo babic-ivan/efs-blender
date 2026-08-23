@@ -25,7 +25,7 @@ void write_header(FileBuffer &buffer,
   buffer.write_string("format " + format + " 1.0");
 
   StringRef version = BKE_blender_version_string();
-  buffer.write_string("comment Created in Blender version " + version);
+  buffer.write_string("comment Created in EasyFormStudio version " + version);
 
   buffer.write_header_element("vertex", int32_t(ply_data.vertices.size()));
   buffer.write_header_scalar_property("float", "x");

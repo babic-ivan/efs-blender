@@ -39,7 +39,7 @@ def _set_default_attr(obj, options, attr, value):
 def limit_rotation_ensure_legacy_behavior(constraint: bpy.types.Constraint):
     """
     Ensure that the given Limit Rotation constraint is configured to use the old
-    pre-Blender 4.2 Limit Rotation behavior.
+    pre-EasyFormStudio 4.2 Limit Rotation behavior.
     """
     # The Legacy Behavior option was introduced during Blender 4.2 development,
     # so guard against it possibly not existing in that case and earlier.
@@ -284,7 +284,7 @@ def make_driver(owner: bpy_struct, prop: str, *, index=-1, type='SUM',
           variables = { 'var': ..., 'var1': ..., 'var2': ... }
 
         Variable specifications are constructed as nested dictionaries and lists that
-        follow the property structure of the original Blender objects, but the most
+        follow the property structure of the original EasyFormStudio objects, but the most
         common case can be abbreviated as a simple tuple.
 
         The following specifications are equivalent:

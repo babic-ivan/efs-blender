@@ -9,7 +9,7 @@ from ...io.imp.user_extensions import import_user_extensions
 
 
 class BlenderCamera():
-    """Blender Camera."""
+    """EasyFormStudio Camera."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

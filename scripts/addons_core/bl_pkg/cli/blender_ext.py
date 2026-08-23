@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 """
-Command for managing Blender extensions.
+Command for managing EasyFormStudio extensions.
 """
 
 
@@ -80,7 +80,7 @@ def pkg_manifest_skip_for_future_compat(item: dict[str, Any]) -> bool:
     """
     Return True if this item should be skipped for forward compatibility.
 
-    This allows repositories to contain extensions for future Blender versions
+    This allows repositories to contain extensions for future EasyFormStudio versions
     without causing errors in older versions.
     Items with unknown types are silently skipped rather than treated as invalid.
     """
@@ -152,10 +152,10 @@ HTML_TEMPLATE = '''\
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Blender Extensions</title>
+  <title>EasyFormStudio Extensions</title>
 </head>
 <body>
-<p>Blender Extension Listing:</p>
+<p>EasyFormStudio Extension Listing:</p>
 ${body}
 <center><p>Built ${date}</p></center>
 </body>
@@ -2159,7 +2159,7 @@ def platform_from_this_system() -> str:
 
 def blender_platforms_from_wheel_platform(wheel_platform: str) -> list[str]:
     """
-    Convert a wheel to a Blender compatible platform: e.g.
+    Convert a wheel to a EasyFormStudio compatible platform: e.g.
     - ``linux_x86_64``              -> ``linux-x64``.
     - ``manylinux_2_28_x86_64``     -> ``linux-x64``.
     - ``manylinux2014_aarch64``     -> ``linux-arm64``.
@@ -2440,12 +2440,12 @@ def repository_filter_skip(
 
     Filtering will exclude extensions when:
 
-    - They're incompatible with Blender, Python or the platform defined by the ``filter_*`` arguments.
+    - They're incompatible with EasyFormStudio, Python or the platform defined by the ``filter_*`` arguments.
       ``skip_message_fn`` callback will run with the cause of the incompatibility.
     - The meta-data is malformed, it doesn't confirm to ``blender_manifest.toml`` data-types.
       ``error_fn`` callback will run with the cause of the error.
 
-    This is used so Blender's extensions listing only shows compatible extensions as well as
+    This is used so EasyFormStudio's extensions listing only shows compatible extensions as well as
     reporting errors if the user attempts to install an extension which isn't compatible with their system.
     """
 
@@ -2537,7 +2537,7 @@ def repository_filter_skip(
         if (version_min is not None) and (filter_blender_version < version_min):
             # Blender is older than the packages minimum supported version.
             if skip_message_fn is not None:
-                skip_message_fn("This Blender version ({:s}) doesn't meet the minimum supported version ({:s})".format(
+                skip_message_fn("This EasyFormStudio version ({:s}) doesn't meet the minimum supported version ({:s})".format(
                     ".".join(str(x) for x in filter_blender_version),
                     ".".join(str(x) for x in version_min),
                 ))
@@ -2545,7 +2545,7 @@ def repository_filter_skip(
         if (version_max is not None) and (filter_blender_version >= version_max):
             # Blender is newer or equal to the maximum value.
             if skip_message_fn is not None:
-                skip_message_fn("This Blender version ({:s}) must be less than the maximum version ({:s})".format(
+                skip_message_fn("This EasyFormStudio version ({:s}) must be less than the maximum version ({:s})".format(
                     ".".join(str(x) for x in filter_blender_version),
                     ".".join(str(x) for x in version_max),
                 ))
@@ -2571,7 +2571,7 @@ def generic_version_triple_parse_or_error(version: str, identifier: str) -> tupl
 
 
 def blender_version_parse_or_error(version: str) -> tuple[int, int, int] | str:
-    return generic_version_triple_parse_or_error(version, "Blender")
+    return generic_version_triple_parse_or_error(version, "EasyFormStudio")
 
 
 def python_version_parse_or_error(version: str) -> tuple[int, int, int] | str:
@@ -2685,7 +2685,7 @@ def pkg_manifest_detect_duplicates(
 
     Ensure packages have non-overlapping:
     - Platforms.
-    - Blender versions.
+    - EasyFormStudio versions.
     - Python versions.
 
     Return an error if they do, otherwise None.
@@ -3374,7 +3374,7 @@ def generic_arg_blender_version(subparse: argparse.ArgumentParser) -> None:
         default="0.0.0",
         type=str,
         help=(
-            "The version of Blender used for selecting packages."
+            "The version of EasyFormStudio used for selecting packages."
         ),
         required=False,
     )
@@ -3634,7 +3634,7 @@ class subcmd_server:
             fh.write("    <th>Name</th>\n")
             fh.write("    <th>Description</th>\n")
             fh.write("    <th>Website</th>\n")
-            fh.write("    <th>Blender Versions</th>\n")
+            fh.write("    <th>EasyFormStudio Versions</th>\n")
             fh.write("    <th>Python Versions</th>\n")
             fh.write("    <th>Platforms</th>\n")
             fh.write("    <th>Size</th>\n")

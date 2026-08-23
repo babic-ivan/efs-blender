@@ -14,7 +14,7 @@ from .vnode import VNode
 
 
 class BlenderNode():
-    """Blender Node."""
+    """EasyFormStudio Node."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 
@@ -310,10 +310,10 @@ class BlenderNode():
                                    ] if is_point_cloud is False else bpy.data.pointclouds[pymesh.blender_name[cache_key]]
         else:
             if not is_point_cloud:
-                gltf.log.info("Blender create Mesh node {}".format(pymesh.name or pynode.mesh))
+                gltf.log.info("EasyFormStudio create Mesh node {}".format(pymesh.name or pynode.mesh))
                 mesh = BlenderMesh.create(gltf, pynode.mesh, pynode.skin)
             else:
-                gltf.log.info("Blender create Point Cloud node {}".format(pymesh.name or pynode.mesh))
+                gltf.log.info("EasyFormStudio create Point Cloud node {}".format(pymesh.name or pynode.mesh))
                 mesh = BlenderMesh.create_pointcloud(gltf, pynode.mesh)
 
             if cache_key is not None:

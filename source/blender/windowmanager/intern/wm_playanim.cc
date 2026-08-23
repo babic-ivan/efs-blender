@@ -2336,8 +2336,8 @@ int WM_main_playanim(int argc, const char **argv)
 
     bke::sound_system_initialize();
 
-    if (!(g_audaspace.audio_device = bke::sound_device_init(nullptr, specs, 1024, "Blender"))) {
-      g_audaspace.audio_device = bke::sound_device_init("None", specs, 0, "Blender");
+    if (!(g_audaspace.audio_device = bke::sound_device_init(nullptr, specs, 1024, "EasyFormStudio"))) {
+      g_audaspace.audio_device = bke::sound_device_init("None", specs, 0, "EasyFormStudio");
     }
   }
 #endif

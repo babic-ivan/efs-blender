@@ -17,7 +17,7 @@ from . import accessors as gltf2_blender_gather_accessors
 
 
 def _natural_sort_key(name):
-    """Mirror Blender's BLI_strcasecmp_natural: case-insensitive natural sort.
+    """Mirror EasyFormStudio's BLI_strcasecmp_natural: case-insensitive natural sort.
     Splits name into text/number chunks so that numeric parts sort numerically.
     E.g. Object2 < Object10, matching the Outliner's display order.
     """
@@ -25,7 +25,7 @@ def _natural_sort_key(name):
 
 
 def _sort_by_name(iterable):
-    """Sort Blender objects/collections/bones using natural sort to match
+    """Sort EasyFormStudio objects/collections/bones using natural sort to match
     the Outliner's default alphabetical display order."""
     return sorted(iterable, key=lambda x: _natural_sort_key(x.name))
 

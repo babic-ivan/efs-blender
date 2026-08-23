@@ -16,7 +16,7 @@ from .draco_compression_extension import decode_primitive
 
 
 class BlenderMesh():
-    """Blender Mesh."""
+    """EasyFormStudio Mesh."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 
@@ -500,7 +500,7 @@ def do_primitives(gltf, mesh_idx, skin_idx, mesh, ob):
                 continue
 
             key_block = ob.shape_key_add(name=sk_name)
-            key_block.value = 0.0  # Starting Blender 5.0, SK are created with weight 1.0, so setting to 0.0, as 0.0 is the default glTF SK weight
+            key_block.value = 0.0  # Starting EasyFormStudio 5.0, SK are created with weight 1.0, so setting to 0.0, as 0.0 is the default glTF SK weight
             key_block.points.foreach_set('co', squish(sk_vert_locs[sk_i], np.float32))
 
             sk_i += 1

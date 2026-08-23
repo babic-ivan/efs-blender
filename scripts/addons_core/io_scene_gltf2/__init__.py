@@ -13,7 +13,7 @@ bl_info = {
     'description': 'Import-Export as glTF 2.0',
     'warning': '',
     'doc_url': "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
-    'tracker_url': "https://github.com/KhronosGroup/glTF-Blender-IO/issues/",
+    'tracker_url': "https://github.com/KhronosGroup/glTF-EasyFormStudio-IO/issues/",
     'support': 'OFFICIAL',
     'category': 'Import-Export',
 }
@@ -200,7 +200,7 @@ class ConvertGLTF2_Base:
         items=(
             ('SPEC', 'Standard', 'Physically-based glTF lighting units (cd, lx, nt)'),
             ('COMPAT', 'Unitless', 'Non-physical, unitless lighting. Useful when exposure controls are not available'),
-            ('RAW', 'Raw (Deprecated)', 'Blender lighting strengths with no conversion'),
+            ('RAW', 'Raw (Deprecated)', 'EasyFormStudio lighting strengths with no conversion'),
         ),
         description='Optional backwards compatibility for non-standard render engines. Applies to lights',  # TODO: and emissive materials',
         default='SPEC'
@@ -1027,14 +1027,14 @@ class ExportGLTF2_Base(ConvertGLTF2_Base):
     export_original_specular: BoolProperty(
         name='Export Original PBR Specular',
         description=(
-            'Export original glTF PBR Specular, instead of Blender Principled Shader Specular'
+            'Export original glTF PBR Specular, instead of EasyFormStudio Principled Shader Specular'
         ),
         default=False,
     )
 
     will_save_settings: BoolProperty(
         name='Remember Export Settings',
-        description='Store glTF export settings in the Blender project',
+        description='Store glTF export settings in the EasyFormStudio project',
         default=False)
 
     export_hierarchy_full_collections: BoolProperty(
@@ -1950,9 +1950,9 @@ class ImportGLTF2(Operator, ConvertGLTF2_Base, ImportHelper):
     bone_heuristic: EnumProperty(
         name="Bone Dir",
         items=(
-            ("BLENDER", "Blender (best for import/export round trip)",
-                "Good for re-importing glTFs exported from Blender, "
-                "and re-exporting glTFs to glTFs after Blender editing. "
+            ("BLENDER", "EasyFormStudio (best for import/export round trip)",
+                "Good for re-importing glTFs exported from EasyFormStudio, "
+                "and re-exporting glTFs to glTFs after EasyFormStudio editing. "
                 "Bone tips are placed on their local +Y axis (in glTF space)"),
             ("TEMPERANCE", "Temperance (average)",
                 "Decent all-around strategy. "
@@ -2114,7 +2114,7 @@ class ImportGLTF2(Operator, ConvertGLTF2_Base, ImportHelper):
             gltf_importer.read()
             gltf_importer.checks()
 
-            gltf_importer.log.info("Data are loaded, start creating Blender stuff")
+            gltf_importer.log.info("Data are loaded, start creating EasyFormStudio stuff")
 
             start_time = time.time()
             BlenderGlTF.create(gltf_importer)

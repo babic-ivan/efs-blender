@@ -21,7 +21,7 @@ class Channel(enum.IntEnum):
 
 
 class FillImage:
-    """Fills a channel with the channel src_chan from a Blender image."""
+    """Fills a channel with the channel src_chan from a EasyFormStudio image."""
 
     def __init__(self, image: bpy.types.Image, src_chan: Channel):
         self.image = image
@@ -29,7 +29,7 @@ class FillImage:
 
 
 class FillImageTile:
-    """Fills a channel with the channel src_chan from a Blender UDIM image."""
+    """Fills a channel with the channel src_chan from a EasyFormStudio UDIM image."""
 
     def __init__(self, image: bpy.types.Image, tile, src_chan: Channel):
         self.image = image
@@ -38,7 +38,7 @@ class FillImageTile:
 
 
 class FillImageRGB2BWTile:
-    """Fills a channel from a Blender UDIM image, RGB 2 BW"""
+    """Fills a channel from a EasyFormStudio UDIM image, RGB 2 BW"""
 
     def __init__(self, image: bpy.types.Image, tile):
         self.image = image
@@ -46,7 +46,7 @@ class FillImageRGB2BWTile:
 
 
 class FillImageRGB2BW:
-    """Fills a channel from a Blender image, RGB 2 BW"""
+    """Fills a channel from a EasyFormStudio image, RGB 2 BW"""
 
     def __init__(self, image: bpy.types.Image):
         self.image = image
@@ -72,7 +72,7 @@ class StoreData:
 
 class StoreImage:
     """
-    Store a channel with the channel src_chan from a Blender image.
+    Store a channel with the channel src_chan from a EasyFormStudio image.
     This channel will be used for numpy calculation (no direct channel mapping)
     """
 
@@ -92,7 +92,7 @@ class ExportImage:
         }
 
     This says that the ExportImage's R channel should be filled with the B
-    channel of the Blender image 'Im1', and the ExportImage's G channel
+    channel of the EasyFormStudio image 'Im1', and the ExportImage's G channel
     should be filled with all 1.0s. Undefined channels mean we don't care
     what values that channel has.
 
@@ -173,7 +173,7 @@ class ExportImage:
             return False
 
     def blender_image(self, export_settings) -> Optional[bpy.types.Image]:
-        """If there's an existing Blender image we can use,
+        """If there's an existing EasyFormStudio image we can use,
         returns it. Otherwise (if channels need packing),
         returns None.
         """

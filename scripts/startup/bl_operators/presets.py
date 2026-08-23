@@ -48,7 +48,7 @@ def _call_preset_cb(fn, context, filepath, *, deprecated="4.2"):
     if fn_arg_count == 2 + args_offset:
         args = (context, filepath)
     else:
-        print("Deprecated since Blender {:s}, a filepath argument should be included in: {!r}".format(deprecated, fn))
+        print("Deprecated since EasyFormStudio {:s}, a filepath argument should be included in: {!r}".format(deprecated, fn))
         args = (context, )
 
     try:

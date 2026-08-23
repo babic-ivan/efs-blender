@@ -49,7 +49,7 @@ static void read_face_display_color(Mesh *mesh,
   bke::SpanAttributeWriter<ColorGeometry4f> color_data =
       attributes.lookup_or_add_for_write_only_span<ColorGeometry4f>(attr_name, color_domain);
   if (!color_data) {
-    CLOG_WARN(&LOG, "Primvar '%s' could not be added to Blender", primvar.GetBaseName().GetText());
+    CLOG_WARN(&LOG, "Primvar '%s' could not be added to EasyFormStudio", primvar.GetBaseName().GetText());
     return;
   }
 
@@ -110,7 +110,7 @@ void read_generic_mesh_primvar(Mesh *mesh,
 
   if (!domain.has_value() || !type.has_value()) {
     CLOG_WARN(&LOG,
-              "Primvar '%s' (interpolation %s, type %s) cannot be converted to Blender",
+              "Primvar '%s' (interpolation %s, type %s) cannot be converted to EasyFormStudio",
               pv_name.GetText(),
               pv_interp.GetText(),
               pv_type.GetAsToken().GetText());

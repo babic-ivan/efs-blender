@@ -23,7 +23,7 @@ def get_file_parts(tile, face_data, colors, width, height, opacity):
 
 def header(width, height):
     yield "%!PS-Adobe-3.0 EPSF-3.0\n"
-    yield f"%%Creator: Blender {bpy.app.version_string}\n"
+    yield f"%%Creator: EasyFormStudio {bpy.app.version_string}\n"
     yield "%%Pages: 1\n"
     yield "%%Orientation: Portrait\n"
     yield f"%%BoundingBox: 0 0 {width} {height}\n"

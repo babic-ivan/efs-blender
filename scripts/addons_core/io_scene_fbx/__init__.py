@@ -88,14 +88,14 @@ class ImportFBX(bpy.types.Operator, ImportHelper):
     bake_space_transform: BoolProperty(
         name="Apply Transform",
         description="Bake space transform into object data, avoids getting unwanted rotations to objects when "
-        "target space is not aligned with Blender's space "
+        "target space is not aligned with EasyFormStudio's space "
         "(WARNING! experimental option, use at own risk, known to be broken with armatures/animations)",
         default=False,
     )
 
     use_custom_normals: BoolProperty(
         name="Custom Normals",
-        description="Import custom normals, if available (otherwise Blender will recompute them)",
+        description="Import custom normals, if available (otherwise EasyFormStudio will recompute them)",
         default=True,
     )
     colors_type: EnumProperty(
@@ -200,7 +200,7 @@ class ImportFBX(bpy.types.Operator, ImportHelper):
     )
     mtl_name_collision_mode: EnumProperty(
         name="Material Name Collision",
-        items=(("MAKE_UNIQUE", "Make Unique", "Import each FBX material as a unique Blender material"),
+        items=(("MAKE_UNIQUE", "Make Unique", "Import each FBX material as a unique EasyFormStudio material"),
                ("REFERENCE_EXISTING", "Reference Existing",
                "If a material with the same name already exists, reference that instead of importing"),
                ),
@@ -351,8 +351,8 @@ class ExportFBX(bpy.types.Operator, ExportHelper):
     apply_unit_scale: BoolProperty(
         name="Apply Unit",
         description=(
-            "Take into account current Blender units settings "
-            "(if unset, raw Blender Units values are used as-is)"
+            "Take into account current EasyFormStudio units settings "
+            "(if unset, raw EasyFormStudio Units values are used as-is)"
         ),
         default=True,
     )
@@ -368,7 +368,7 @@ class ExportFBX(bpy.types.Operator, ExportHelper):
                ),
         name="Apply Scalings",
         description="How to apply custom and units scalings in generated FBX file "
-        "(Blender uses FBX scale to detect units on import, "
+        "(EasyFormStudio uses FBX scale to detect units on import, "
         "but many other applications do not handle the same way)",
     )
 
@@ -381,7 +381,7 @@ class ExportFBX(bpy.types.Operator, ExportHelper):
     bake_space_transform: BoolProperty(
         name="Apply Transform",
         description="Bake space transform into object data, avoids getting unwanted rotations to objects when "
-        "target space is not aligned with Blender's space "
+        "target space is not aligned with EasyFormStudio's space "
         "(WARNING! experimental option, use at own risk, known to be broken with armatures/animations)",
         default=False,
     )
@@ -408,7 +408,7 @@ class ExportFBX(bpy.types.Operator, ExportHelper):
     )
     use_mesh_modifiers_render: BoolProperty(
         name="Use Modifiers Render Setting",
-        description="Use render settings when applying modifiers to mesh objects (DISABLED in Blender 2.8)",
+        description="Use render settings when applying modifiers to mesh objects (DISABLED in EasyFormStudio 2.8)",
         default=True,
     )
     mesh_smooth_type: EnumProperty(
@@ -499,13 +499,13 @@ class ExportFBX(bpy.types.Operator, ExportHelper):
     )
     armature_nodetype: EnumProperty(
         name="Armature FBXNode Type",
-        items=(('NULL', "Null", "'Null' FBX node, similar to Blender's Empty (default)"),
+        items=(('NULL', "Null", "'Null' FBX node, similar to EasyFormStudio's Empty (default)"),
                ('ROOT', "Root", "'Root' FBX node, supposed to be the root of chains of bones..."),
                ('LIMBNODE', "LimbNode", "'LimbNode' FBX node, a regular joint between two bones..."),
                ),
-        description="FBX type of node (object) used to represent Blender's armatures "
+        description="FBX type of node (object) used to represent EasyFormStudio's armatures "
         "(use the Null type unless you experience issues with the other app, "
-        "as other choices may not import back perfectly into Blender...)",
+        "as other choices may not import back perfectly into EasyFormStudio...)",
         default='NULL',
     )
     bake_anim: BoolProperty(

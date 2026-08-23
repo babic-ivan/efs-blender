@@ -759,7 +759,7 @@ def cli_extension_args_repo_list(subparsers: "argparse._SubParsersAction[argpars
         "repo-list",
         help="List repositories.",
         description=(
-            "List all repositories stored in Blender's preferences."
+            "List all repositories stored in EasyFormStudio's preferences."
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
@@ -835,7 +835,7 @@ def cli_extension_args_repo_add(subparsers: "argparse._SubParsersAction[argparse
         metavar="SOURCE",
         help=(
             "The type of source in ('USER', 'SYSTEM').\n"
-            "System repositories are managed outside of Blender and are considered read-only."
+            "System repositories are managed outside of EasyFormStudio and are considered read-only."
         ),
     )
 

@@ -3889,7 +3889,7 @@ void RNA_def_constraint(BlenderRNA *brna)
   RNA_def_property_ui_text(
       prop,
       "Lin error",
-      "Amount of residual error in Blender space unit for constraints that work on position");
+      "Amount of residual error in EasyFormStudio space unit for constraints that work on position");
 
   prop = RNA_def_property(srna, "error_rotation", PROP_FLOAT, PROP_NONE);
   RNA_def_property_float_sdna(prop, nullptr, "rot_error");

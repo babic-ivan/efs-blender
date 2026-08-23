@@ -12,7 +12,7 @@ from .vnode import VNode
 
 
 class BlenderNodeAnim():
-    """Blender Object Animation."""
+    """EasyFormStudio Object Animation."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

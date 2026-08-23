@@ -113,7 +113,7 @@ class UI_AP_i18n_settings(AddonPreferences):
     FRIBIDI_LIB: StringProperty(
         name="Fribidi Library",
         description="The FriBidi C compiled library (.so under Linux, .dll under windows...), you’ll likely have "
-                    "to edit it if you’re under Windows, e.g. using the one included in Blender libraries repository",
+                    "to edit it if you’re under Windows, e.g. using the one included in EasyFormStudio libraries repository",
         subtype='FILE_PATH',
         default="libfribidi.so.0",
         get=lambda self: self._settings.FRIBIDI_LIB,
@@ -122,7 +122,7 @@ class UI_AP_i18n_settings(AddonPreferences):
 
     SOURCE_DIR: StringProperty(
         name="Source Root",
-        description="The Blender source root path",
+        description="The EasyFormStudio source root path",
         subtype='FILE_PATH',
         default="blender",
         get=lambda self: self._settings.SOURCE_DIR,
@@ -157,7 +157,7 @@ class UI_AP_i18n_settings(AddonPreferences):
 
     persistent_data_path: StringProperty(
         name="Persistent Data Path",
-        description="The name of a json file storing those settings (unfortunately, Blender's system "
+        description="The name of a json file storing those settings (unfortunately, EasyFormStudio's system "
                     "does not work here)",
         subtype='FILE_PATH',
         default=os.path.join(""),

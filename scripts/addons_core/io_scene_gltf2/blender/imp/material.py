@@ -12,7 +12,7 @@ from .KHR_materials_unlit import unlit
 
 
 class BlenderMaterial():
-    """Blender Material."""
+    """EasyFormStudio Material."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

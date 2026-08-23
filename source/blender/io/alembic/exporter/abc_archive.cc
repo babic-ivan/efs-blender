@@ -45,7 +45,7 @@ static MetaData create_abc_metadata(const Main *bmain, double scene_fps)
     abc_user_description = "unknown";
   }
 
-  abc_metadata.set(Alembic::Abc::kApplicationNameKey, "Blender");
+  abc_metadata.set(Alembic::Abc::kApplicationNameKey, "EasyFormStudio");
   abc_metadata.set(Alembic::Abc::kUserDescriptionKey, abc_user_description);
   abc_metadata.set("blender_version", std::string("v") + BKE_blender_version_string());
   abc_metadata.set("FramesPerTimeUnit", std::to_string(scene_fps));

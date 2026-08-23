@@ -87,7 +87,7 @@ class ActionSlot(PropertyGroup, ActionSlotBase):
     )
 
     def slot_name_from_handle(self, slot_handle_as_str: str, _is_set: bool) -> str:
-        """This is a get_transform callback function, see Blender 5.0 PyAPI docs."""
+        """This is a get_transform callback function, see EasyFormStudio 5.0 PyAPI docs."""
         if not slot_handle_as_str:
             return ""
         slot_handle = int(slot_handle_as_str)
@@ -100,7 +100,7 @@ class ActionSlot(PropertyGroup, ActionSlotBase):
         return action_slot.name_display
 
     def slot_name_to_handle(self, new_name: str, _current_name: str, _is_set: bool) -> str:
-        """This is a set_transform callback function, see Blender 5.0 PyAPI docs."""
+        """This is a set_transform callback function, see EasyFormStudio 5.0 PyAPI docs."""
         action_slot = self.action.slots.get("OB" + new_name)
         if not action_slot:
             return ""
@@ -248,7 +248,7 @@ class ActionSlot(PropertyGroup, ActionSlotBase):
     )
 
     def setup_id_to_str(self, unique_id_as_str: str, _is_set: bool) -> str:
-        """This is a get_transform callback function, see Blender 5.0 PyAPI docs."""
+        """This is a get_transform callback function, see EasyFormStudio 5.0 PyAPI docs."""
         if not unique_id_as_str:
             return ""
         unique_id = int(unique_id_as_str)
@@ -259,7 +259,7 @@ class ActionSlot(PropertyGroup, ActionSlotBase):
         return action_setup.name
 
     def setup_name_to_id(self, name: str, _curr_value: str, _is_set: bool) -> str:
-        """This is a set_transform callback function, see Blender 5.0 PyAPI docs."""
+        """This is a set_transform callback function, see EasyFormStudio 5.0 PyAPI docs."""
         action_setups = self.id_data.rigify_action_slots
         action_setup = next((setup for setup in action_setups if setup.name == name), None)
         if not action_setup:

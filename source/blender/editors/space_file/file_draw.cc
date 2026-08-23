@@ -219,7 +219,7 @@ static void file_draw_tooltip_custom_func(bContext & /*C*/,
       if (thumb) {
         /* Look for version in existing thumbnail if available. */
         IMB_metadata_get_field(
-            thumb->metadata, "Thumb::Blender::Version", version_str, sizeof(version_str));
+            thumb->metadata, "Thumb::EasyFormStudio::Version", version_str, sizeof(version_str));
       }
 
       if (!version_str[0] && !(file->attributes & FILE_ATTR_OFFLINE)) {
@@ -2041,7 +2041,7 @@ static void file_draw_invalid_library_hint(const bContext * /*C*/,
   int sy = v2d->tot.ymax;
 
   {
-    const char *message = RPT_("Unreadable Blender library file:");
+    const char *message = RPT_("Unreadable EasyFormStudio library file:");
     file_draw_string_multiline(sx, sy, message, width, line_height, text_col, nullptr, &sy);
 
     sy -= line_height;

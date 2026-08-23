@@ -189,7 +189,7 @@ static CLG_LogRef LOG = {"blend.readfile"};
 static CLG_LogRef LOG_UNDO = {"undo"};
 
 #if ENDIAN_ORDER == B_ENDIAN
-#  warning "Support for Big Endian endianness is deprecated and will be removed in Blender 5.0"
+#  warning "Support for Big Endian endianness is deprecated and will be removed in EasyFormStudio 5.0"
 #endif
 
 /* local prototypes */
@@ -1186,10 +1186,10 @@ static bool is_minversion_older_than_blender(FileData *fd, ReportList *reports)
       }
       BKE_reportf(reports,
                   RPT_ERROR,
-                  "The file was saved by a newer version, open it with Blender %s or later",
+                  "The file was saved by a newer version, open it with EasyFormStudio %s or later",
                   min_reader_ver_str);
       CLOG_WARN(&LOG,
-                "%s: File saved by a newer version of Blender (%s), Blender %s or later is "
+                "%s: File saved by a newer version of EasyFormStudio (%s), EasyFormStudio %s or later is "
                 "needed to open it.",
                 fd->relabase,
                 writer_ver_str,
@@ -1208,11 +1208,11 @@ static FileData *blo_decode_and_check(FileData *fd, ReportList *reports)
   read_blender_header(fd);
 
   if (fd->flags & FD_FLAGS_SWITCH_ENDIAN) {
-    BLI_STATIC_ASSERT(ENDIAN_ORDER == L_ENDIAN, "Blender only builds on little endian systems")
+    BLI_STATIC_ASSERT(ENDIAN_ORDER == L_ENDIAN, "EasyFormStudio only builds on little endian systems")
     BKE_reportf(reports,
                 RPT_ERROR,
-                "Blend file '%s' created by a Big Endian version of Blender, support for "
-                "these files has been removed in Blender 5.0, use an older version of Blender "
+                "Blend file '%s' created by a Big Endian version of EasyFormStudio, support for "
+                "these files has been removed in EasyFormStudio 5.0, use an older version of EasyFormStudio "
                 "to open and convert it.",
                 fd->relabase);
     blo_filedata_free(fd);
@@ -1235,7 +1235,7 @@ static FileData *blo_decode_and_check(FileData *fd, ReportList *reports)
     BKE_reportf(
         reports,
         RPT_ERROR,
-        "Cannot read blend file '%s', incomplete header, may be from a newer version of Blender",
+        "Cannot read blend file '%s', incomplete header, may be from a newer version of EasyFormStudio",
         fd->relabase);
     blo_filedata_free(fd);
     fd = nullptr;
@@ -4321,7 +4321,7 @@ BlendFileData *blo_read_file_internal(FileData *fd, const char *filepath)
     if (bfd->main->has_forward_compatibility_issues) {
       BKE_reportf(fd->reports->reports,
                   RPT_WARNING,
-                  "Blendfile '%s' was created by a future version of Blender and contains ID "
+                  "Blendfile '%s' was created by a future version of EasyFormStudio and contains ID "
                   "names longer than currently supported. These have been truncated.",
                   bfd->filepath);
     }
@@ -4732,9 +4732,9 @@ static void read_libraries_report_invalid_id_names(FileData *fd,
   if (has_forward_compatibility_issues) {
     BKE_reportf(reports,
                 RPT_WARNING,
-                "Library '%s' was created by a future version of Blender and contains ID names "
+                "Library '%s' was created by a future version of EasyFormStudio and contains ID names "
                 "longer than currently supported. This may cause missing linked data, consider "
-                "opening and re-saving that library with the current Blender version.",
+                "opening and re-saving that library with the current EasyFormStudio version.",
                 filepath);
   }
   else {

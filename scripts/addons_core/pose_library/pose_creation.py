@@ -252,7 +252,7 @@ class PoseActionCreator:
 
         Raise UnresolvablePathError when the path cannot be resolved.
         This is easier to deal with upstream than the generic ValueError raised
-        by Blender.
+        by EasyFormStudio.
         """
         try:
             return datablock.path_resolve(data_path)  # type: ignore

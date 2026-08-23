@@ -12,7 +12,7 @@ from . import tree as gltf2_blender_gather_tree
 
 # TODO these 3 functions move to shared file
 def __convert_swizzle_location(loc, export_settings):
-    """Convert a location from Blender coordinate system to glTF coordinate system."""
+    """Convert a location from EasyFormStudio coordinate system to glTF coordinate system."""
     if export_settings['gltf_yup']:
         return Vector((loc[0], loc[2], -loc[1]))
     else:
@@ -21,7 +21,7 @@ def __convert_swizzle_location(loc, export_settings):
 
 def __convert_swizzle_rotation(rot, export_settings):
     """
-    Convert a quaternion rotation from Blender coordinate system to glTF coordinate system.
+    Convert a quaternion rotation from EasyFormStudio coordinate system to glTF coordinate system.
 
     'w' is still at first position.
     """
@@ -32,7 +32,7 @@ def __convert_swizzle_rotation(rot, export_settings):
 
 
 def __convert_swizzle_scale(scale, export_settings):
-    """Convert a scale from Blender coordinate system to glTF coordinate system."""
+    """Convert a scale from EasyFormStudio coordinate system to glTF coordinate system."""
     if export_settings['gltf_yup']:
         return Vector((scale[0], scale[2], scale[1]))
     else:

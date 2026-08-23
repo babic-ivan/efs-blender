@@ -145,7 +145,7 @@ static void find_prefix_to_skip(pxr::UsdStageRefPtr stage, ImportSettings &setti
     return;
   }
 
-  pxr::TfToken generated_key("Blender:generated");
+  pxr::TfToken generated_key("EasyFormStudio:generated");
   pxr::SdfPath path("/");
   auto prim = stage->GetPseudoRoot();
   while (true) {
@@ -188,9 +188,9 @@ static void determine_blender_compat(pxr::UsdStageRefPtr stage, ImportSettings &
   const std::string doc = stage->GetRootLayer()->GetDocumentation();
 
   /* Was the incoming Stage written by Blender? If so, set some broad compatibility flags. */
-  if (doc.find("Blender v", 0) == 0) {
+  if (doc.find("EasyFormStudio v", 0) == 0) {
     /* Set flag if the Blender Stage was from before version 4.4. */
-    settings.blender_stage_version_prior_44 = doc < "Blender v4.4";
+    settings.blender_stage_version_prior_44 = doc < "EasyFormStudio v4.4";
   }
 }
 

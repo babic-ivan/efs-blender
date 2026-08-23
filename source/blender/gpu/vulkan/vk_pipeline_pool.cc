@@ -630,7 +630,7 @@ void VKPipelinePool::free_data()
 
 #ifdef WITH_BUILDINFO
 struct VKPipelineCachePrefixHeader {
-  /* `BC` stands for "Blender Cache" + 2 bytes for file versioning. */
+  /* `BC` stands for "EasyFormStudio Cache" + 2 bytes for file versioning. */
   uint32_t magic = 0xBC00;
   uint32_t blender_version = BLENDER_VERSION;
   uint32_t blender_version_patch = BLENDER_VERSION_PATCH;
@@ -703,7 +703,7 @@ void VKPipelinePool::read_from_disk()
      */
     CLOG_INFO(&LOG,
               "Pipeline cache on disk [%s] is ignored as it was written by a different driver or "
-              "Blender version. Cache will be overwritten when exiting.",
+              "EasyFormStudio version. Cache will be overwritten when exiting.",
               cache_file.c_str());
     return;
   }

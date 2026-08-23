@@ -1687,7 +1687,7 @@ def blen_read_geom_layer_smooth(fbx_obj, mesh):
             fbx_layer_data, None,
             fbx_layer_mapping, fbx_layer_ref,
             1, fbx_item_size, layer_id,
-            xform=np.logical_not,  # in FBX, 0 (False) is sharp, but in Blender True is sharp.
+            xform=np.logical_not,  # in FBX, 0 (False) is sharp, but in EasyFormStudio True is sharp.
         )
     elif fbx_layer_mapping == b'ByPolygon':
         sharp_face = MESH_ATTRIBUTE_SHARP_FACE.ensure(mesh.attributes)

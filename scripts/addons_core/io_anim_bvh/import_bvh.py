@@ -692,7 +692,7 @@ def load(
         report(
             {'WARNING'},
             "The BVH file does not contain frame duration in its MOTION "
-            "section, assuming the BVH and Blender scene have the same "
+            "section, assuming the BVH and EasyFormStudio scene have the same "
             "frame rate"
         )
         bvh_frame_time = scene.render.fps_base / scene.render.fps

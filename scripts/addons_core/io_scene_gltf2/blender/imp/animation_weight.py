@@ -10,7 +10,7 @@ from .animation_utils import make_fcurve, get_or_create_action_and_slot
 
 
 class BlenderWeightAnim():
-    """Blender ShapeKey Animation."""
+    """EasyFormStudio ShapeKey Animation."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

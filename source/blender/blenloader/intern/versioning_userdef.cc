@@ -1320,7 +1320,7 @@ void blo_do_versions_userdef(UserDef *userdef)
   if (!USER_VERSION_ATLEAST(293, 1)) {
     /* This rename was made after 2.93.0, harmless to run when it's not needed. */
     const char *replace_table[][2] = {
-        {"blender", "Blender"},
+        {"blender", "EasyFormStudio"},
         {"blender_27x", "Blender_27x"},
         {"industry_compatible", "Industry_Compatible"},
     };

@@ -1627,7 +1627,7 @@ void RNA_def_property_deprecated(PropertyRNA *prop,
   if (removal_version <= BLENDER_VERSION) {
     fprintf(stderr,
             "\nWARNING: \"%s.%s\" deprecation starting at %d.%d marks this property to be removed "
-            "in the current Blender version!\n\n",
+            "in the current EasyFormStudio version!\n\n",
             srna->identifier,
             prop->identifier,
             version / 100,

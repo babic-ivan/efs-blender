@@ -641,7 +641,7 @@ void RNA_def_main(BlenderRNA *brna)
                                     nullptr,
                                     nullptr);
   RNA_def_property_ui_text(
-      prop, "All Data-Blocks", "Read-only list of all IDs listed in Blender data-base");
+      prop, "All Data-Blocks", "Read-only list of all IDs listed in EasyFormStudio data-base");
 
   RNA_api_main(srna);
 

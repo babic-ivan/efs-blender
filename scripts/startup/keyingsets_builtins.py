@@ -4,7 +4,7 @@
 
 """
 Built-In Keying Sets
-None of these Keying Sets should be removed, as these are needed by various parts of Blender in order for them
+None of these Keying Sets should be removed, as these are needed by various parts of EasyFormStudio in order for them
 to work correctly.
 
 Beware also about changing the order that these are defined here, since this can result in old files referring to the

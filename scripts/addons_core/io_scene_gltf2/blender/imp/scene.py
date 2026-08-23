@@ -12,7 +12,7 @@ from ...io.imp.user_extensions import import_user_extensions
 
 
 class BlenderScene():
-    """Blender Scene."""
+    """EasyFormStudio Scene."""
     def __new__(cls, *args, **kwargs):
         raise RuntimeError("%s should not be instantiated" % cls)
 

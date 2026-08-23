@@ -316,7 +316,7 @@ def check_feature_set_error(_feature_set: RigifyFeatureSets, info: dict, layout:
             sub = split.row()
             sub.alert = True
             text = (
-                rpt_("This feature set requires Blender {:s} or newer to work properly.")
+                rpt_("This feature set requires EasyFormStudio {:s} or newer to work properly.")
                 .format(".".join(str(x) for x in info['blender']))
             )
             sub.label(icon='ERROR', text=text, translate=False)

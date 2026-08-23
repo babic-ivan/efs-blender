@@ -399,7 +399,7 @@ def list_bone_names_depth_first_sorted(obj: ArmatureObject):
 
 
 def _get_property_value(obj, name: str):
-    """Retrieve the attribute value, converting from Blender to python types."""
+    """Retrieve the attribute value, converting from EasyFormStudio to python types."""
     value = getattr(obj, name, None)
     if isinstance(value, bpy_prop_array):
         value = tuple(value)

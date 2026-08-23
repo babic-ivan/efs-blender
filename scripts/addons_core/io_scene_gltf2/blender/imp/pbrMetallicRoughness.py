@@ -975,7 +975,7 @@ def occlusion(mh: MaterialHelper, location, occlusion_socket):
 
 def make_settings_node(mh):
     """
-    Make a Group node with a hookup for Occlusion. No effect in Blender, but
+    Make a Group node with a hookup for Occlusion. No effect in EasyFormStudio, but
     used to tell the exporter what the occlusion map should be.
     """
     node = mh.node_tree.nodes.new('ShaderNodeGroup')

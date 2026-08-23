@@ -12,7 +12,7 @@ from ..com.gltf2_blender_math import scale_rot_swap_matrix, nearby_signed_perm_m
 def compute_vnodes(gltf):
     """Computes the tree of virtual nodes.
     Copies the glTF nodes into a tree of VNodes, then performs a series of
-    passes to transform it into a form that we can import into Blender.
+    passes to transform it into a form that we can import into EasyFormStudio.
     """
     init_vnodes(gltf)
     mark_bones_and_armas(gltf)
@@ -27,7 +27,7 @@ def compute_vnodes(gltf):
 class VNode:
     """A "virtual" node.
     These are what eventually get turned into nodes
-    in the Blender scene.
+    in the EasyFormStudio scene.
     """
     # Types
     Object = 0
@@ -352,7 +352,7 @@ def move_skinned_meshes(gltf):
     no effect on its world space position: only the world transforms of the
     joints in its skin affect it.
 
-    To do this in Blender:
+    To do this in EasyFormStudio:
      * Move a skinned mesh to become a child of the armature that skins it.
        Have to ensure the mesh and arma have the same world transform.
      * When we do mesh creation, we will also need to put all the verts in
@@ -422,7 +422,7 @@ def reparent(gltf, vnode_id, new_parent):
 
 def fixup_multitype_nodes(gltf):
     """
-    Blender only lets each object have one of: an armature, a mesh, a
+    EasyFormStudio only lets each object have one of: an armature, a mesh, a
     camera, a light. Also bones cannot have any of these either. Find any
     nodes like this and move the mesh/camera/light onto new children.
     """
@@ -472,7 +472,7 @@ def fixup_multitype_nodes(gltf):
 def correct_cameras_and_lights(gltf):
     """
     Depending on the coordinate change, lights and cameras might need to be
-    rotated to match Blender conventions for which axes they point along.
+    rotated to match EasyFormStudio conventions for which axes they point along.
     """
     if gltf.camera_correction is None:
         return

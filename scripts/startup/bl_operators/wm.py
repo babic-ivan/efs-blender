@@ -3368,7 +3368,7 @@ class WM_MT_splash_quick_setup(Menu):
             col = split.column()
             col.operator(
                 "preferences.copy_prev",
-                text=iface_("Import Blender {:d}.{:d} Preferences", "Operator").format(*old_version),
+                text=iface_("Import EasyFormStudio {:d}.{:d} Preferences", "Operator").format(*old_version),
                 icon='NONE',
                 translate=False,
             )
@@ -3395,7 +3395,7 @@ class WM_MT_splash_quick_setup(Menu):
         sub = col.column(heading="Theme")
         label = bpy.types.USERPREF_MT_interface_theme_presets.bl_label
         if label == "Presets":
-            label = "Blender Dark"
+            label = "EasyFormStudio Dark"
         sub.menu("USERPREF_MT_interface_theme_presets", text=label)
 
         col.separator()
@@ -3407,7 +3407,7 @@ class WM_MT_splash_quick_setup(Menu):
         sub = col.column(heading="Keymap")
         text = bpy.path.display_name(kc.name)
         if not text:
-            text = "Blender"
+            text = "EasyFormStudio"
         sub.menu("USERPREF_MT_keyconfigs", text=text)
 
         if hasattr(kc_prefs, "select_mouse"):
@@ -3480,7 +3480,7 @@ class WM_MT_splash(Menu):
         col2 = split.column()
 
         col2.operator("wm.url_open_preset", text="What's New", icon='URL').type = 'RELEASE_NOTES'
-        col2.operator("wm.url_open_preset", text="Donate to Blender", icon='FUND').type = 'FUND'
+        col2.operator("wm.url_open_preset", text="Donate to EasyFormStudio", icon='FUND').type = 'FUND'
 
         layout.separator()
 
@@ -3521,7 +3521,7 @@ class WM_MT_splash_about(Menu):
         del _ghost_backend, ghost_backend
 
         col.separator(factor=2.0)
-        col.label(text="EasyFormStudio is free software, based on Blender")
+        col.label(text="EasyFormStudio is free software, based on EasyFormStudio")
         col.label(text="Licensed under the GNU General Public License")
 
         col = split.column(align=True)
