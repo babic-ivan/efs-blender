@@ -115,10 +115,55 @@ def register():
     bpy.app.timers.register(_kiosk_ui, first_interval=0.1)
 
 
+# Built-in tools removed from the 3D viewport toolbar.
+TOOLBAR_REMOVE = {
+    "builtin.cursor",
+    "builtin.rotate",
+    "builtin.scale", "builtin.scale_cage",
+    "builtin.transform",
+    "builtin.measure",
+    "builtin.breakdowner", "builtin.push", "builtin.relax",
+}
+
+
+def _trim_toolbar():
+    from bl_ui.space_toolsystem_toolbar import VIEW3D_PT_tools_active as tools_panel
+
+    def _keep(tool):
+        return getattr(tool, "idname", None) not in TOOLBAR_REMOVE
+
+    def _filter_seq(seq):
+        out = []
+        for item in seq:
+            if item is None:
+                if not out or out[-1] is None:
+                    continue
+                out.append(None)
+            elif hasattr(item, "idname"):
+                if _keep(item):
+                    out.append(item)
+            elif isinstance(item, tuple):
+                sub = tuple(tool for tool in item if _keep(tool))
+                if sub:
+                    out.append(sub)
+            else:
+                out.append(item)
+        while out and out[-1] is None:
+            out.pop()
+        return out
+
+    for mode, seq in list(tools_panel._tools.items()):
+        try:
+            tools_panel._tools[mode] = _filter_seq(list(seq))
+        except Exception:
+            pass
+
+
 def _kiosk_ui():
     _hide_sidebar_tabs()
     _hide_view_layer_core_panels()
     _simplify_view3d_menus()
+    _trim_toolbar()
     return None
 
 
