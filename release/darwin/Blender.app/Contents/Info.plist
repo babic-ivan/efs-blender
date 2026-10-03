@@ -34,7 +34,7 @@
 	<key>CFBundleExecutable</key>
 	<string>EasyFormStudio</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${MACOSX_BUNDLE_LONG_VERSION_STRING}, EasyFormStudio</string>
+	<string>${MACOSX_BUNDLE_LONG_VERSION_STRING}, EasyFormStudio, based on Blender (Blender Foundation), GNU GPL</string>
 	<key>CFBundleIconFile</key>
 	<string>blender_icon_legacy.icns</string>
 	<key>CFBundleIdentifier</key>

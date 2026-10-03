@@ -1149,8 +1149,8 @@ class WM_OT_url_open_preset(Operator):
           tip_("EasyFormStudio's official web-site")),
          "https://easyformstudio.com/"),
         (('CREDITS', iface_("Credits"),
-          tip_("EasyFormStudio credits")),
-         "https://easyformstudio.com/"),
+          tip_("Blender credits: the developers EasyFormStudio is built on")),
+         "https://www.blender.org/about/credits/"),
         (('EXTENSIONS', iface_("Extensions Platform"),
           tip_("Online directory of free and open source extensions")),
          "https://extensions.blender.org/"),
@@ -3519,12 +3519,16 @@ class WM_MT_splash_about(Menu):
             col.label(text=iface_("Windowing Environment: {:s}").format(_ghost_backend()), translate=False)
         del _ghost_backend, ghost_backend
 
+        col.separator(factor=2.0)
+        col.label(text="EasyFormStudio is free software, based on Blender")
+        col.label(text="Licensed under the GNU General Public License")
 
         col = split.column(align=True)
         col.emboss = 'PULLDOWN_MENU'
         col.operator("wm.url_open", text="Website", icon='URL').url = "https://easyformstudio.com/"
         col.operator("wm.url_open", text="Contact", icon='URL').url = "mailto:easyformstudio@gmail.com"
         col.separator(factor=2.0)
+        col.operator("wm.url_open_preset", text="Credits", icon='URL').type = 'CREDITS'
         col.operator("wm.url_open", text="License", icon='URL').url = "https://www.gnu.org/licenses/gpl-3.0.html"
         col.operator("wm.url_open", text="Based on Blender", icon='URL').url = "https://www.blender.org"
 

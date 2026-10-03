@@ -26,7 +26,7 @@ BEGIN
       VALUE "ProductVersion", BLEN_VER_RC_STR
       VALUE "CompanyName", "EasyFormStudio"
       VALUE "FileDescription", "EasyFormStudio"
-      VALUE "LegalCopyright", "GPLv3 (EasyFormStudio, based on Blender)"
+      VALUE "LegalCopyright", "GPLv3 (Blender Foundation; EasyFormStudio, based on Blender)"
       VALUE "OriginalFilename", "blender.exe"
       VALUE "ProductName", "EasyFormStudio"
     END

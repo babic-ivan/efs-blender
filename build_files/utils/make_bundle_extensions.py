@@ -54,7 +54,7 @@ EFS_FILES = [
     "efs_labels.py", "efs_fonts.py", "efs_ai.py", "ai_commands_catalog.txt", "efs_assembly.py", "efs_web_parts.py", "efs_variants.py", "efs_check.py", "efs_render.py", "efs_order.py", "efs_utils.py", "efs_parts.py", "efs_dxf.py",
     "efs_pdf_drawing.py", "efs_nesting.py", "efs_hardware.py", "efs_mpr.py", "efs_cix.py",
     "efs_quote.py", "efs_label_print.py", "img_loader.py", "preferences.py",
-    "efs.blend", "efs_pro", "prices.xlsx", "blender_manifest.toml",
+    "efs.blend", "efs_pro", "prices.xlsx", "blender_manifest.toml", "LICENSE",
 ]
 
 JUNK = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", ".git")
